@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+.DS_Store
+.env
+.env.*
+!.env.example
+

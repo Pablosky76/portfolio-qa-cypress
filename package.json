@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-qa-cypress",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas E2E del portfolio interactivo de Pablo Gutiérrez Mata",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "test:smoke": "cypress run --spec 'cypress/e2e/entrada.cy.js,cypress/e2e/perfil.cy.js'",
+    "test:realm": "cypress run --spec 'cypress/e2e/reino.cy.js'"
+  },
+  "devDependencies": {
+    "cypress": "15.15.0",
+    "cypress-mochawesome-reporter": "4.0.2"
+  }
+}

@@ -1,0 +1,40 @@
+name: Portfolio QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Ejecutar los 15 casos sobre el portfolio publicado
+        run: npm test
+      - name: Guardar reporte y capturas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-qa-${{ github.run_number }}
+          path: |
+            cypress/reports/
+            cypress/screenshots/
+          retention-days: 14
+          if-no-files-found: warn
