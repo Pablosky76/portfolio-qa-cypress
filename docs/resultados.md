@@ -33,4 +33,8 @@ La segunda pasada completa obtuvo 15/15. Estos ajustes no requirieron cambios en
 
 ## GitHub Actions
 
-Workflow preparado para ejecutar los mismos 15 casos. Su primera ejecución remota se verificará tras publicar el código; el resultado local no se presenta como resultado de CI.
+La [primera ejecución remota](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43106941896) terminó **correctamente** el 11 de noviembre de 2026 a las 22:55 (Europe/Madrid), sobre el commit `48a4233dbcc1bab9519c0b6a13a8c2900c158101`. Estado comprobado el 12 de noviembre de 2026.
+
+GitHub confirmó el éxito de la ejecución de la batería y de la subida del reporte y las capturas. El artefacto `portfolio-qa-1` está disponible en esa ejecución y tiene caducidad prevista para el 25 de noviembre de 2026 a las 22:55 (Europe/Madrid).
+
+Esto verifica la primera ejecución en Ubuntu con Node.js 22, además de la pasada local. No supone que todas las futuras versiones del sitio estén verificadas: cada ejecución comprueba el despliegue público disponible en ese momento.
