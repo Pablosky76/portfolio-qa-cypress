@@ -18,6 +18,10 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        tanda: [1, 2, 3]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,13 +30,13 @@ jobs:
           cache: npm
       - name: Instalar dependencias
         run: npm ci
-      - name: Ejecutar las seis baterías (15 casos) sobre el portfolio publicado
-        run: npm test
+      - name: Ejecutar tanda ${{ matrix.tanda }} sobre el portfolio publicado
+        run: npm run test:tanda${{ matrix.tanda }}
       - name: Guardar reporte y capturas
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-qa-${{ github.run_number }}
+          name: portfolio-qa-tanda${{ matrix.tanda }}-${{ github.run_number }}
           path: |
             cypress/reports/
             cypress/screenshots/

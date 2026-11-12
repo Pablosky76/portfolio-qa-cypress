@@ -4,19 +4,47 @@
   "private": true,
   "description": "Pruebas E2E del portfolio interactivo de Pablo Gutiérrez Mata",
   "scripts": {
-    "test": "cypress run",
+    "test": "cypress run --browser chrome",
     "cy:open": "cypress open",
-    "test:entrada": "cypress run --spec 'cypress/e2e/entrada/**/*.cy.js'",
-    "test:navegacion": "cypress run --spec 'cypress/e2e/navegacion/**/*.cy.js'",
-    "test:contenido": "cypress run --spec 'cypress/e2e/contenido/**/*.cy.js'",
-    "test:documentos": "cypress run --spec 'cypress/e2e/documentos/**/*.cy.js'",
-    "test:responsive": "cypress run --spec 'cypress/e2e/responsive/**/*.cy.js'",
-    "test:interacciones": "cypress run --spec 'cypress/e2e/interacciones/**/*.cy.js'",
-    "test:smoke": "cypress run --spec 'cypress/e2e/entrada/**/*.cy.js,cypress/e2e/navegacion/**/*.cy.js,cypress/e2e/contenido/**/*.cy.js,cypress/e2e/documentos/**/*.cy.js,cypress/e2e/responsive/**/*.cy.js'",
-    "test:realm": "npm run test:interacciones"
+    "test:entrada": "cypress run --browser chrome --spec 'cypress/e2e/entrada/**/*.cy.js'",
+    "test:navegacion": "cypress run --browser chrome --spec 'cypress/e2e/navegacion/**/*.cy.js'",
+    "test:contenido": "cypress run --browser chrome --spec 'cypress/e2e/contenido/**/*.cy.js'",
+    "test:documentos": "cypress run --browser chrome --spec 'cypress/e2e/documentos/**/*.cy.js'",
+    "test:responsive": "cypress run --browser chrome --spec 'cypress/e2e/responsive/**/*.cy.js'",
+    "test:interacciones": "cypress run --browser chrome --spec 'cypress/e2e/interacciones/**/*.cy.js'",
+    "test:smoke": "cypress run --browser chrome --spec 'cypress/e2e/entrada/**/*.cy.js,cypress/e2e/navegacion/**/*.cy.js,cypress/e2e/contenido/**/*.cy.js,cypress/e2e/documentos/**/*.cy.js,cypress/e2e/responsive/**/*.cy.js'",
+    "test:realm": "npm run test:interacciones",
+    "test:tanda1": "cypress run --browser chrome --spec 'cypress/e2e/entrada/**/*.cy.js,cypress/e2e/navegacion/**/*.cy.js,cypress/e2e/contenido/**/*.cy.js,cypress/e2e/documentos/**/*.cy.js,cypress/e2e/responsive/**/*.cy.js,cypress/e2e/interacciones/**/*.cy.js,cypress/e2e/mundo3d/**/*.cy.js,cypress/e2e/ajustes/**/*.cy.js,cypress/e2e/castillo/**/*.cy.js'",
+    "test:tanda2": "cypress run --browser chrome --spec 'cypress/e2e/teclado/**/*.cy.js,cypress/e2e/mapa/**/*.cy.js,cypress/e2e/adaptacion3d/**/*.cy.js,cypress/e2e/contacto/**/*.cy.js,cypress/e2e/camara/**/*.cy.js,cypress/e2e/movimiento/**/*.cy.js'",
+    "test:tanda3": "cypress run --browser chrome --spec 'cypress/e2e/persistencia/**/*.cy.js,cypress/e2e/recuperacion/**/*.cy.js,cypress/e2e/accesibilidad/**/*.cy.js'",
+    "test:mundo3d": "cypress run --browser chrome --spec 'cypress/e2e/mundo3d/**/*.cy.js'",
+    "test:ajustes": "cypress run --browser chrome --spec 'cypress/e2e/ajustes/**/*.cy.js'",
+    "test:castillo": "cypress run --browser chrome --spec 'cypress/e2e/castillo/**/*.cy.js'",
+    "test:teclado": "cypress run --browser chrome --spec 'cypress/e2e/teclado/**/*.cy.js'",
+    "test:mapa": "cypress run --browser chrome --spec 'cypress/e2e/mapa/**/*.cy.js'",
+    "test:adaptacion3d": "cypress run --browser chrome --spec 'cypress/e2e/adaptacion3d/**/*.cy.js'",
+    "test:contacto": "cypress run --browser chrome --spec 'cypress/e2e/contacto/**/*.cy.js'",
+    "test:persistencia": "cypress run --browser chrome --spec 'cypress/e2e/persistencia/**/*.cy.js'",
+    "test:recuperacion": "cypress run --browser chrome --spec 'cypress/e2e/recuperacion/**/*.cy.js'",
+    "test:accesibilidad": "cypress run --browser chrome --spec 'cypress/e2e/accesibilidad/**/*.cy.js'",
+    "test:camara": "cypress run --browser chrome --spec 'cypress/e2e/camara/**/*.cy.js'",
+    "test:movimiento": "cypress run --browser chrome --spec 'cypress/e2e/movimiento/**/*.cy.js'"
   },
   "devDependencies": {
-    "cypress": "15.15.0",
-    "cypress-mochawesome-reporter": "4.0.2"
+    "@testing-library/cypress": "10.1.3",
+    "axe-core": "4.14.0",
+    "cypress": "15.21.1",
+    "cypress-axe": "1.7.0",
+    "cypress-mochawesome-reporter": "5.0.0",
+    "cypress-real-events": "1.15.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "mocha": {
+      "glob": "14.0.6",
+      "minimatch": "11.0.8"
+    }
   }
 }

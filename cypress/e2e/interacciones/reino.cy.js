@@ -74,7 +74,7 @@ describe('Interacciones · paneles y preferencias del reino', () => {
   it('REI-04 · abre un mapa con destinos disponibles', () => {
     cy.get('#map-action').click();
     cy.get('#map-dialog').should('be.visible');
-    cy.get('#realm-map').should('be.visible').and('have.attr', 'role', 'img');
+    cy.get('#realm-map').should('be.visible').and('have.attr', 'role', 'group');
     cy.get('#map-list button').should('have.length.at.least', 1).first().should('be.enabled');
     cy.get('#close-map').click();
     cy.get('#map-dialog').should('not.be.visible');

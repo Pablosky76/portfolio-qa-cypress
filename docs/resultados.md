@@ -1,5 +1,32 @@
 # Resultados de validación
 
+## Ampliación a 120 casos · 12 de noviembre de 2026
+
+**Validación local de la versión corregida: 120 aprobados, 0 fallidos, 0 omitidos.** Duración de las suites: 3 minutos y 31 segundos. Entorno: macOS, Node 25.8.1, Cypress 15.21.1, Chrome 157 sin interfaz; sitio servido localmente con las mismas rutas de entrada y perfil.
+
+| Tanda | Casos | Resultado local |
+| --- | ---: | --- |
+| Funcionalidad del portfolio y mundo | 40 | 40 aprobados |
+| Interacción, pantallas, cámara y movimiento | 40 | 40 aprobados |
+| Persistencia, recuperación y accesibilidad | 40 | 40 aprobados |
+
+Los 33 tests del motor del repositorio del sitio también terminan correctamente. No se suman al contador de 120 E2E. Las 13 auditorías de axe forman parte de esos 120 y no detectaron infracciones en los estados examinados.
+
+`npm audit`: 0 vulnerabilidades conocidas al validar esta versión. Se actualizan Cypress y el reporte, y se fijan dependencias indirectas corregidas de Mocha; los motivos están en el README.
+
+### Defectos encontrados y correcciones
+
+La primera ejecución de 100 casos contra el sitio público anterior obtuvo 97 aprobados y tres auditorías fallidas. Se corrigieron en la aplicación los nombres accesibles, las regiones de información, el enlace de créditos y el mapa. El [registro de incidencias](incidencias.md) conserva la evidencia y la corrección.
+
+En las pruebas se investigaron también fallos del entorno: Enter y Escape se reprodujeron en controles mínimos y se resolvieron con eventos nativos; se desactiva la caché durante los fallos de red simulados. La prueba de salida del castillo observa desplazamiento guardado, porque un aviso de proximidad sustituye al mensaje transitorio de ruta. La prueba de parada al cerrar un diálogo comprueba que no se reanuda una tecla anterior; el guardado periódico se pausa mientras el diálogo permanece abierto.
+
+### Límite de verificación visual
+
+Se inspeccionaron capturas de Cypress de la interfaz, pero la escena no quedó suficientemente representada para validar visualmente el render. Se solicitó revisión interactiva; el navegador la bloqueó por un permiso guardado, incluso después de la autorización del usuario. Queda pendiente revisar la escena dibujada, además de dispositivos físicos, lector de pantalla y rendimiento sostenido. Los resultados automáticos no sustituyen esas comprobaciones.
+
+La validación pública y de GitHub Actions se registra después de publicar las correcciones.
+
+
 ## Baterías por categoría · 12 de noviembre de 2026
 
 La reorganización conserva los 15 casos y sus comprobaciones. La ejecución local completa ha terminado con **15 correctos, 0 fallidos y 0 omitidos**, en aproximadamente 17 segundos de ejecución de las suites, y ha generado el reporte HTML por categoría.

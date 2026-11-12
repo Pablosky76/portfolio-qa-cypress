@@ -1,85 +1,67 @@
 # Portfolio QA · Cypress
 
-Batería de pruebas E2E del [portfolio interactivo de Pablo Gutiérrez Mata](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site). Un proyecto de QA que comprueba la propia experiencia que presenta mi trabajo.
+120 casos para el [portfolio 3D de Pablo Gutiérrez Mata](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site), organizados en tres tandas. Cubren tanto el recorrido profesional como el mundo interactivo.
 
-## Objetivo
+## Las tres tandas
 
-Verificar que un visitante puede elegir su recorrido, consultar mi perfil, acceder al CV y usar los paneles del mundo interactivo. Los casos se ejecutan sobre el sitio público real, sin simular sus respuestas.
+| Tanda | Casos | Objetivo | Herramientas añadidas |
+| --- | ---: | --- | --- |
+| 1 | 40 | Entrada, perfil, CV, personaje, cámara, salto, castillo y ajustes | Cypress y reporte Mochawesome |
+| 2 | 40 | Teclado, foco, mapa, pantallas, cámara, movimiento y contacto | Testing Library y eventos nativos con cypress-real-events |
+| 3 | 40 | Visitas guardadas, errores de carga y accesibilidad | cypress-axe y axe-core |
 
-## Baterías por categoría: 15 casos
+Son 120 escenarios distintos, no 120 ejecuciones del mismo caso en diferentes navegadores. Los 15 originales forman parte de la primera tanda. Cada categoría tiene su carpeta. El [plan e inventario](docs/plan-de-pruebas.md) relaciona los IDs con sus escenarios; los [resultados](docs/resultados.md) distinguen comprobaciones aprobadas, fallos y límites.
 
-| Categoría | Casos | Comprobaciones |
-| --- | ---: | --- |
-| [Entrada](cypress/e2e/entrada/bienvenida.cy.js) | 3 | Elección obligatoria, selección única y acceso al perfil |
-| [Navegación](cypress/e2e/navegacion/perfil.cy.js) | 2 | Menú de secciones y vuelta al inicio |
-| [Contenido](cypress/e2e/contenido/perfil.cy.js) | 2 | Identidad, experiencia QA y enlaces profesionales |
-| [Documentos](cypress/e2e/documentos/cv.cy.js) | 1 | Descarga de un CV PDF válido |
-| [Diseño adaptable](cypress/e2e/responsive/perfil.cy.js) | 2 | Móvil y escritorio, sin desbordamiento horizontal |
-| [Interacciones](cypress/e2e/interacciones/reino.cy.js) | 5 | Contacto, ayuda, pestañas del CV, mapa y preferencias |
+## Ejecutar
 
-Cada categoría tiene su carpeta y su título en el reporte. Los identificadores originales se conservan para seguir relacionando los casos con el plan de pruebas. Cada test pertenece a una sola categoría principal.
-
-Consultar el [plan de pruebas](docs/plan-de-pruebas.md) y los [resultados de validación](docs/resultados.md).
-
-## Puesta en marcha
-
-Necesitas Node.js 22 y npm. GitHub Actions utiliza esa versión de Node. La instalación de Cypress descarga su navegador de pruebas.
+Necesitas Node.js 22, npm y Google Chrome instalado. GitHub Actions utiliza Node 22 y Chrome del entorno de ejecución.
 
 ```bash
-git clone https://github.com/Pablosky76/portfolio-qa-cypress.git
-cd portfolio-qa-cypress
 npm ci
 npm test
+npm run test:tanda1
+npm run test:tanda2
+npm run test:tanda3
+npm run cy:open
 ```
 
-| Comando | Uso |
-| --- | --- |
-| `npm test` | Ejecutar los 15 casos |
-| `npm run cy:open` | Abrir Cypress para explorar los casos |
-| `npm run test:entrada` | Entrada (3 casos) |
-| `npm run test:navegacion` | Navegación (2 casos) |
-| `npm run test:contenido` | Contenido y enlaces (2 casos) |
-| `npm run test:documentos` | CV en PDF (1 caso) |
-| `npm run test:responsive` | Móvil y escritorio (2 casos) |
-| `npm run test:interacciones` | Paneles y controles del reino (5 casos) |
-| `npm run test:smoke` | Entrada y perfil sin 3D (10 casos, como en la versión inicial) |
-| `npm run test:realm` | Alias del comando de interacciones, conservado por compatibilidad |
+`npm test` ejecuta los 120 casos. Las tandas ejecutan 40, 40 y 40 respectivamente. También existen comandos por categoría, por ejemplo `npm run test:mapa`, `npm run test:persistencia` y `npm run test:accesibilidad`. `test:smoke` conserva los 10 casos de entrada y perfil; `test:realm` conserva el alias de los cinco casos iniciales de interacciones.
 
-`npm test` ejecuta la regresión completa. `test:smoke` es una selección para una comprobación rápida, no una séptima categoría: reutiliza los mismos archivos, sin duplicar tests.
+Para otro despliegue compatible: `CYPRESS_BASE_URL=https://tu-despliegue.example npm test`. Si ejecutas desde una aplicación basada en Electron: `env -u ELECTRON_RUN_AS_NODE npm test`.
 
-Para otro despliegue compatible: `CYPRESS_BASE_URL=https://tu-despliegue.example npm test`.
+## Leer el código
 
-Si ejecutas desde una aplicación basada en Electron y el proceso no arranca, prueba `env -u ELECTRON_RUN_AS_NODE npm test`.
+Cada `it` tiene un objetivo y un ID. La preparación está visible en el `beforeEach`; no hay comandos propios ni bucles generando casos. Se usan `visit`, `get`, `click` y `should` como base. Los escenarios con teclado, almacenamiento y fallos de red añaden comandos concretos explicados en la [guía de Cypress](docs/guia-cypress.md).
+
+Los casos están adaptados a esta aplicación. La documentación explica los comandos; no contiene estos tests completos ni sustituye entenderlos. Las bibliotecas adicionales tienen sus propias referencias oficiales.
 
 ## Reportes y ejecución automática
 
-Mochawesome genera `cypress/reports/html/index.html`, agrupado por categoría, con detalle por caso y capturas de fallos. Si se ejecuta una sola batería, el reporte contiene solo esa selección y reemplaza el anterior. Las comprobaciones de diseño guardan además capturas de móvil y escritorio. Los reportes generados no se guardan en Git.
+Mochawesome genera `cypress/reports/html/index.html` con resultados por categoría y capturas de fallos. Los informes de axe con barreras detectadas se guardan en `cypress/reports/axe`. Los resultados generados están excluidos de Git. Cada ejecución reemplaza el HTML anterior y limpia los JSON de axe anteriores.
 
-GitHub Actions ejecuta la batería en pushes y pull requests a `main`, o manualmente. El reporte y las capturas se conservan como artefactos durante 14 días. No necesita Cypress Cloud ni credenciales del sitio.
+GitHub Actions ejecuta las tres tandas en trabajos separados y conserva reportes y capturas durante 14 días. Los fallos de accesibilidad hacen fallar la tanda correspondiente: no se silencian reglas ni se marcan casos como aprobados cuando fallan.
 
-## Decisiones de diseño
+## Qué se simula y qué se prueba realmente
 
-- IDs existentes para los controles; atributos semánticos y destinos concretos para los enlaces.
-- Aislamiento de pruebas activado: cada caso empieza sin cookies ni almacenamiento de la visita anterior.
-- Esperas por estados visibles, sin pausas fijas ni reintentos que oculten fallos.
-- No se ignoran errores JavaScript de la aplicación.
-- Pasos escritos de forma explícita, sin bucles que generen tests ni comandos personalizados. La preparación del reino está en el `beforeEach` de su archivo.
-- La música se desactiva y se selecciona calidad fluida durante las pruebas del reino.
-- El CV se comprueba por estado HTTP, tipo de contenido y cabecera binaria PDF.
+- Los recorridos normales usan el sitio publicado real.
+- Las pruebas de recuperación interceptan recursos concretos para provocar errores de red o preparan almacenamiento inválido antes de cargar la página.
+- Las pruebas de copia simulan permiso concedido o denegado; no modifican tu portapapeles.
+- La prueba de compatibilidad simula que no existe WebGL y deja que la aplicación ejecute su render alternativo.
+- `cy.press` comprueba Tab; `cy.realPress` comprueba Enter y Escape en Chrome; `trigger` envía eventos sintéticos para los manejadores del juego. No equivale a una prueba física de teclado, ratón o joystick.
+- Se observa el desplazamiento mediante la posición guardada por la aplicación. No se llama a funciones internas para mover al personaje.
 
 ## Límites
 
-Los casos del reino comprueban su interfaz HTML. No certifican la geometría 3D, colisiones, animaciones ni fidelidad visual del avatar. Las capturas son evidencia, no una comparación automática de imágenes. La revisión responsive cubre 390×844 y 1440×900; no equivale a probar dispositivos físicos. Los enlaces externos se verifican por su destino, sin enviar correos ni visitar servicios de terceros.
+120 casos no garantizan por sí solos una calidad total. No hay comparación de píxeles, medición de FPS, pruebas completas de colisiones ni comprobación visual de mallas y animaciones. Un canvas visible con dimensiones válidas no demuestra que todos los objetos 3D se dibujen correctamente. Los tamaños de pantalla simulados no sustituyen dispositivos táctiles reales.
 
-El sitio puede cambiar de forma independiente a este repositorio. Una caída, cambios de contenido o restricciones del alojamiento pueden causar fallos que deben investigarse, no ocultarse.
+Axe detecta parte de los problemas del documento HTML; no evalúa la comprensión de la escena 3D ni certifica conformidad WCAG. Quedan revisiones manuales de lector de pantalla, contraste visual sobre la escena, navegación completa, rendimiento, audio y dispositivos reales. El sitio puede cambiar independientemente de este repositorio; los fallos deben investigarse antes de modificar una expectativa.
 
-## Referencias
+## Mantenimiento de herramientas
 
-Los escenarios están adaptados al comportamiento de este portfolio. La documentación explica los comandos utilizados; no contiene estos casos completos. La [guía de lectura](docs/guia-cypress.md) relaciona cada parte del código con su referencia y explica las comprobaciones menos evidentes.
+Versiones fijadas en `package-lock.json`. Cypress 15.21.1 y el reporte 5.0.0 sustituyen versiones con avisos de seguridad. Los `overrides` de `glob` y `minimatch` se limitan a Mocha, que todavía declara versiones vulnerables en sus dependencias. Retirarlos cuando Mocha incorpore versiones corregidas y repetir la batería y la generación del HTML. No son dependencias que se publiquen en el portfolio.
 
-- [Primer test: visitar, interactuar y comprobar](https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test)
-- [Comprobar resultados con should](https://docs.cypress.io/api/commands/should)
-- [Consultar recursos con request](https://docs.cypress.io/api/commands/request)
-- [Cambiar el tamaño de pantalla con viewport](https://docs.cypress.io/api/commands/viewport)
-- [Configuración de Cypress](https://docs.cypress.io/app/references/configuration)
-- [Navegadores de Cypress](https://docs.cypress.io/app/references/launching-browsers)
+Para revisar herramientas: `npm audit`. Un resultado sin avisos solo describe la base de vulnerabilidades disponible en ese momento.
+
+Los cambios de accesibilidad detectados por esta batería se registran en [incidencias](docs/incidencias.md), con su reproducción y corrección. Sirven como ejemplos concretos para explicar cómo una prueba aporta información y protege una corrección.
+
+Para estudiar los casos antes de una entrevista: [entender y explicar el proyecto](docs/explicar-el-proyecto.md).
