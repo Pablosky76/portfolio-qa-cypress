@@ -6,8 +6,14 @@
   "scripts": {
     "test": "cypress run",
     "cy:open": "cypress open",
-    "test:smoke": "cypress run --spec 'cypress/e2e/entrada.cy.js,cypress/e2e/perfil.cy.js'",
-    "test:realm": "cypress run --spec 'cypress/e2e/reino.cy.js'"
+    "test:entrada": "cypress run --spec 'cypress/e2e/entrada/**/*.cy.js'",
+    "test:navegacion": "cypress run --spec 'cypress/e2e/navegacion/**/*.cy.js'",
+    "test:contenido": "cypress run --spec 'cypress/e2e/contenido/**/*.cy.js'",
+    "test:documentos": "cypress run --spec 'cypress/e2e/documentos/**/*.cy.js'",
+    "test:responsive": "cypress run --spec 'cypress/e2e/responsive/**/*.cy.js'",
+    "test:interacciones": "cypress run --spec 'cypress/e2e/interacciones/**/*.cy.js'",
+    "test:smoke": "cypress run --spec 'cypress/e2e/entrada/**/*.cy.js,cypress/e2e/navegacion/**/*.cy.js,cypress/e2e/contenido/**/*.cy.js,cypress/e2e/documentos/**/*.cy.js,cypress/e2e/responsive/**/*.cy.js'",
+    "test:realm": "npm run test:interacciones"
   },
   "devDependencies": {
     "cypress": "15.15.0",

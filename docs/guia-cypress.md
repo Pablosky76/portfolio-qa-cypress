@@ -4,9 +4,16 @@ La idea es poder seguir cada caso de arriba abajo: preparar la página, hacer al
 
 ## Por dónde empezar
 
-1. `entrada.cy.js`: abrir la web, elegir una opción y comprobar la navegación.
-2. `perfil.cy.js`: contenido, enlaces, CV y tamaños de pantalla.
-3. `reino.cy.js`: preparar la entrada al mundo y probar sus paneles.
+Todos los archivos están en `cypress/e2e/`, separados por categoría:
+
+1. `entrada/bienvenida.cy.js`: abrir la web, elegir una opción y continuar.
+2. `navegacion/perfil.cy.js`: recorrer el menú y volver al inicio.
+3. `contenido/perfil.cy.js`: comprobar información y enlaces profesionales.
+4. `documentos/cv.cy.js`: comprobar el PDF.
+5. `responsive/perfil.cy.js`: consultar el perfil en móvil y escritorio.
+6. `interacciones/reino.cy.js`: preparar la entrada al mundo y probar sus paneles.
+
+Por ejemplo, `npm run test:navegacion` ejecuta solo los dos casos de navegación. `npm test` ejecuta las seis baterías. Los comandos completos están en el README.
 
 `describe` agrupa casos, `it` define un caso y `beforeEach` prepara la página antes de cada uno. Están escritos por separado para que sea fácil ver qué falla. Se conservan los identificadores del plan de pruebas.
 

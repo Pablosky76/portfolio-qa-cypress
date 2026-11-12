@@ -1,5 +1,20 @@
 # Resultados de validación
 
+## Baterías por categoría · 12 de noviembre de 2026
+
+La reorganización conserva los 15 casos y sus comprobaciones. La ejecución local completa ha terminado con **15 correctos, 0 fallidos y 0 omitidos**, en aproximadamente 17 segundos de ejecución de las suites, y ha generado el reporte HTML por categoría.
+
+| Categoría | Correctos / total |
+| --- | ---: |
+| Entrada | 3 / 3 |
+| Navegación | 2 / 2 |
+| Contenido | 2 / 2 |
+| Documentos | 1 / 1 |
+| Diseño adaptable | 2 / 2 |
+| Interacciones | 5 / 5 |
+
+Se ha comprobado también que cada comando de categoría selecciona su archivo y que `test:smoke` selecciona los cinco archivos sin 3D (10 casos), sin duplicados. Entorno local: macOS, Node.js 25.8.1, Cypress 15.15.0 y Electron 138.
+
 ## Versión simplificada · 12 de noviembre de 2026
 
 Tras sustituir los bucles por pasos explícitos y mover la preparación del reino a su `beforeEach`, se ha ejecutado de nuevo la batería completa en local: **15 correctos, 0 fallidos, 0 omitidos**, en aproximadamente 21 segundos de ejecución de las suites. Se ha generado un nuevo reporte HTML. Se mantiene el mismo alcance de comprobaciones.

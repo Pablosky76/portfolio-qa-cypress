@@ -6,13 +6,18 @@ Batería de pruebas E2E del [portfolio interactivo de Pablo Gutiérrez Mata](htt
 
 Verificar que un visitante puede elegir su recorrido, consultar mi perfil, acceder al CV y usar los paneles del mundo interactivo. Los casos se ejecutan sobre el sitio público real, sin simular sus respuestas.
 
-## Alcance: 15 casos
+## Baterías por categoría: 15 casos
 
-| Suite | Casos | Comprobaciones |
+| Categoría | Casos | Comprobaciones |
 | --- | ---: | --- |
-| Entrada | 3 | Elección obligatoria, selección única y acceso al perfil |
-| Perfil | 7 | Contenido, navegación, enlaces de contacto, PDF, vuelta al inicio y dos tamaños de pantalla |
-| Reino | 5 | Contacto, ayuda, pestañas del CV, mapa y preferencias de controles |
+| [Entrada](cypress/e2e/entrada/bienvenida.cy.js) | 3 | Elección obligatoria, selección única y acceso al perfil |
+| [Navegación](cypress/e2e/navegacion/perfil.cy.js) | 2 | Menú de secciones y vuelta al inicio |
+| [Contenido](cypress/e2e/contenido/perfil.cy.js) | 2 | Identidad, experiencia QA y enlaces profesionales |
+| [Documentos](cypress/e2e/documentos/cv.cy.js) | 1 | Descarga de un CV PDF válido |
+| [Diseño adaptable](cypress/e2e/responsive/perfil.cy.js) | 2 | Móvil y escritorio, sin desbordamiento horizontal |
+| [Interacciones](cypress/e2e/interacciones/reino.cy.js) | 5 | Contacto, ayuda, pestañas del CV, mapa y preferencias |
+
+Cada categoría tiene su carpeta y su título en el reporte. Los identificadores originales se conservan para seguir relacionando los casos con el plan de pruebas. Cada test pertenece a una sola categoría principal.
 
 Consultar el [plan de pruebas](docs/plan-de-pruebas.md) y los [resultados de validación](docs/resultados.md).
 
@@ -31,8 +36,16 @@ npm test
 | --- | --- |
 | `npm test` | Ejecutar los 15 casos |
 | `npm run cy:open` | Abrir Cypress para explorar los casos |
-| `npm run test:smoke` | Ejecutar entrada y perfil (10 casos) |
-| `npm run test:realm` | Ejecutar los paneles del reino (5 casos) |
+| `npm run test:entrada` | Entrada (3 casos) |
+| `npm run test:navegacion` | Navegación (2 casos) |
+| `npm run test:contenido` | Contenido y enlaces (2 casos) |
+| `npm run test:documentos` | CV en PDF (1 caso) |
+| `npm run test:responsive` | Móvil y escritorio (2 casos) |
+| `npm run test:interacciones` | Paneles y controles del reino (5 casos) |
+| `npm run test:smoke` | Entrada y perfil sin 3D (10 casos, como en la versión inicial) |
+| `npm run test:realm` | Alias del comando de interacciones, conservado por compatibilidad |
+
+`npm test` ejecuta la regresión completa. `test:smoke` es una selección para una comprobación rápida, no una séptima categoría: reutiliza los mismos archivos, sin duplicar tests.
 
 Para otro despliegue compatible: `CYPRESS_BASE_URL=https://tu-despliegue.example npm test`.
 
@@ -40,7 +53,7 @@ Si ejecutas desde una aplicación basada en Electron y el proceso no arranca, pr
 
 ## Reportes y ejecución automática
 
-Mochawesome genera `cypress/reports/html/index.html`, con detalle por caso y capturas de fallos. Las comprobaciones de diseño guardan además capturas de móvil y escritorio. Los reportes generados no se guardan en Git.
+Mochawesome genera `cypress/reports/html/index.html`, agrupado por categoría, con detalle por caso y capturas de fallos. Si se ejecuta una sola batería, el reporte contiene solo esa selección y reemplaza el anterior. Las comprobaciones de diseño guardan además capturas de móvil y escritorio. Los reportes generados no se guardan en Git.
 
 GitHub Actions ejecuta la batería en pushes y pull requests a `main`, o manualmente. El reporte y las capturas se conservan como artefactos durante 14 días. No necesita Cypress Cloud ni credenciales del sitio.
 

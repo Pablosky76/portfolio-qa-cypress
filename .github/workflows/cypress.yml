@@ -26,7 +26,7 @@ jobs:
           cache: npm
       - name: Instalar dependencias
         run: npm ci
-      - name: Ejecutar los 15 casos sobre el portfolio publicado
+      - name: Ejecutar las seis baterías (15 casos) sobre el portfolio publicado
         run: npm test
       - name: Guardar reporte y capturas
         if: always()

@@ -1,4 +1,4 @@
-describe('Paneles de la experiencia interactiva', () => {
+describe('Interacciones · paneles y preferencias del reino', () => {
   // Antes de cada test, entramos al reino con la música desactivada.
   beforeEach(() => {
     cy.visit('/');
