@@ -4,7 +4,9 @@
 
 Tras sustituir los bucles por pasos explícitos y mover la preparación del reino a su `beforeEach`, se ha ejecutado de nuevo la batería completa en local: **15 correctos, 0 fallidos, 0 omitidos**, en aproximadamente 21 segundos de ejecución de las suites. Se ha generado un nuevo reporte HTML. Se mantiene el mismo alcance de comprobaciones.
 
-Entorno: macOS, Node.js 25.8.1, Cypress 15.15.0 y Electron 138. El resultado de GitHub Actions documentado más abajo corresponde a la primera versión, antes de esta simplificación.
+Entorno local: macOS, Node.js 25.8.1, Cypress 15.15.0 y Electron 138.
+
+La [ejecución de GitHub Actions de esta versión](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43265200563) también terminó **correctamente**, sobre el commit `5d40a5590d9f7398855d7aa34e281b74abde8fbc`. El reporte y las capturas están disponibles en el artefacto `portfolio-qa-2`. El apartado inferior conserva la evidencia de la primera versión.
 
 ## Ejecución local · 11 de noviembre de 2026
 
