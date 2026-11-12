@@ -15,6 +15,8 @@ La reorganización conserva los 15 casos y sus comprobaciones. La ejecución loc
 
 Se ha comprobado también que cada comando de categoría selecciona su archivo y que `test:smoke` selecciona los cinco archivos sin 3D (10 casos), sin duplicados. Entorno local: macOS, Node.js 25.8.1, Cypress 15.15.0 y Electron 138.
 
+La [ejecución de las seis baterías en GitHub Actions](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43266576542) terminó **correctamente** sobre el commit `974e91371726a155e31b4c75089c69592df5ef75`. El reporte y las capturas se guardaron en el artefacto `portfolio-qa-3`.
+
 ## Versión simplificada · 12 de noviembre de 2026
 
 Tras sustituir los bucles por pasos explícitos y mover la preparación del reino a su `beforeEach`, se ha ejecutado de nuevo la batería completa en local: **15 correctos, 0 fallidos, 0 omitidos**, en aproximadamente 21 segundos de ejecución de las suites. Se ha generado un nuevo reporte HTML. Se mantiene el mismo alcance de comprobaciones.
