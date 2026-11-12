@@ -1,5 +1,10 @@
+// Estructura básica: abrir la página, realizar una acción y comprobar el resultado.
+// https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test
 describe('Entrada al portfolio', () => {
-  beforeEach(() => cy.visit('/'));
+  // beforeEach abre la página antes de cada caso.
+  beforeEach(() => {
+    cy.visit('/');
+  });
 
   it('ENT-01 · exige elegir un recorrido antes de continuar', () => {
     cy.get('#welcome-title').should('be.visible').and('contain', 'Dos formas de descubrirla');

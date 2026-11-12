@@ -1,5 +1,7 @@
 describe('Perfil profesional', () => {
-  beforeEach(() => cy.visit('/perfil.html'));
+  beforeEach(() => {
+    cy.visit('/perfil.html');
+  });
 
   it('PER-01 · presenta identidad, especialidad y experiencia QA', () => {
     cy.title().should('include', 'Perfil profesional');
@@ -12,32 +14,45 @@ describe('Perfil profesional', () => {
   });
 
   it('PER-02 · navega a todas las secciones desde el menú', () => {
-    ['experience', 'skills', 'education', 'contacto'].forEach((section) => {
-      cy.get(`nav[aria-label="Secciones del perfil"] a[href="#${section}"]`).click();
-      cy.location('hash').should('eq', `#${section}`);
-      cy.get(`#${section}`).should('be.visible').find('h2').should('not.be.empty');
-    });
+    cy.get('nav[aria-label="Secciones del perfil"] a[href="#experience"]').click();
+    cy.location('hash').should('eq', '#experience');
+    cy.get('#experience').should('be.visible');
+    cy.get('#experience h2').should('not.be.empty');
+
+    cy.get('nav[aria-label="Secciones del perfil"] a[href="#skills"]').click();
+    cy.location('hash').should('eq', '#skills');
+    cy.get('#skills').should('be.visible');
+    cy.get('#skills h2').should('not.be.empty');
+
+    cy.get('nav[aria-label="Secciones del perfil"] a[href="#education"]').click();
+    cy.location('hash').should('eq', '#education');
+    cy.get('#education').should('be.visible');
+    cy.get('#education h2').should('not.be.empty');
+
+    cy.get('nav[aria-label="Secciones del perfil"] a[href="#contacto"]').click();
+    cy.location('hash').should('eq', '#contacto');
+    cy.get('#contacto').should('be.visible');
+    cy.get('#contacto h2').should('not.be.empty');
   });
 
   it('PER-03 · ofrece destinos profesionales correctos y seguros', () => {
     cy.get('#contacto a[href="mailto:pablogmdev@proton.me"]').should('be.visible');
-    const destinations = [
-      'https://github.com/Pablosky76',
-      'https://www.linkedin.com/in/pablogutierrezmata'
-    ];
-    destinations.forEach((href) => {
-      cy.get(`#contacto a[href="${href}"]`)
-        .should('have.attr', 'target', '_blank')
-        .and('have.attr', 'rel').and('include', 'noopener');
-    });
+    cy.get('#contacto a[href="https://github.com/Pablosky76"]').should('have.attr', 'target', '_blank');
+    cy.get('#contacto a[href="https://github.com/Pablosky76"]').should('have.attr', 'rel').and('include', 'noopener');
+
+    cy.get('#contacto a[href="https://www.linkedin.com/in/pablogutierrezmata"]').should('have.attr', 'target', '_blank');
+    cy.get('#contacto a[href="https://www.linkedin.com/in/pablogutierrezmata"]').should('have.attr', 'rel').and('include', 'noopener');
   });
 
+  // cy.request permite consultar el PDF sin abrir un visor.
+  // https://docs.cypress.io/api/commands/request#download-a-pdf-file
   it('PER-04 · entrega un CV PDF real desde el enlace de descarga', () => {
     cy.get('.profile-ctas a[download]').should('contain', 'Descargar CV')
       .invoke('attr', 'href').then((href) => {
         cy.request({ url: href, encoding: 'binary' }).then((response) => {
           expect(response.status).to.eq(200);
           expect(response.headers['content-type']).to.include('application/pdf');
+          // Un PDF empieza por estos cinco caracteres.
           expect(response.body.slice(0, 5)).to.eq('%PDF-');
           expect(response.body.length).to.be.greaterThan(1000);
         });
@@ -52,19 +67,41 @@ describe('Perfil profesional', () => {
     cy.get('#entry-realm').should('exist');
   });
 
-  [[390, 844, 'móvil'], [1440, 900, 'escritorio']].forEach(([width, height, device], index) => {
-    it(`PER-0${6 + index} · mantiene contenido y contacto utilizables en ${device}`, () => {
-      cy.viewport(width, height);
-      cy.get('h1').should('be.visible');
-      cy.get('.profile-ctas a[download]').should('be.visible');
-      cy.document().then((doc) => {
-        expect(doc.documentElement.scrollWidth, 'sin desbordamiento horizontal')
-          .to.be.at.most(doc.documentElement.clientWidth + 1);
-      });
-      cy.get('#contacto').scrollIntoView();
-      cy.get('#contacto a[href^="mailto:"]').should('be.visible');
-      cy.get('#contacto a[download]').should('be.visible');
-      cy.screenshot(`perfil-${device}`, { capture: 'viewport' });
+  // cy.viewport cambia el tamaño de la pantalla del navegador de pruebas.
+  // https://docs.cypress.io/api/commands/viewport
+  it('PER-06 · mantiene contenido y contacto utilizables en móvil', () => {
+    cy.viewport(390, 844);
+    cy.get('h1').should('be.visible');
+    cy.get('.profile-ctas a[download]').should('be.visible');
+
+    // El contenido no debe ser más ancho que la pantalla (se permite 1 px de redondeo).
+    cy.document().then((documento) => {
+      const anchoContenido = documento.documentElement.scrollWidth;
+      const anchoPantalla = documento.documentElement.clientWidth;
+      expect(anchoContenido).to.be.at.most(anchoPantalla + 1);
     });
+
+    cy.get('#contacto').scrollIntoView();
+    cy.get('#contacto a[href^="mailto:"]').should('be.visible');
+    cy.get('#contacto a[download]').should('be.visible');
+    cy.screenshot('perfil-móvil', { capture: 'viewport' });
+  });
+
+  it('PER-07 · mantiene contenido y contacto utilizables en escritorio', () => {
+    cy.viewport(1440, 900);
+    cy.get('h1').should('be.visible');
+    cy.get('.profile-ctas a[download]').should('be.visible');
+
+    // El contenido no debe ser más ancho que la pantalla (se permite 1 px de redondeo).
+    cy.document().then((documento) => {
+      const anchoContenido = documento.documentElement.scrollWidth;
+      const anchoPantalla = documento.documentElement.clientWidth;
+      expect(anchoContenido).to.be.at.most(anchoPantalla + 1);
+    });
+
+    cy.get('#contacto').scrollIntoView();
+    cy.get('#contacto a[href^="mailto:"]').should('be.visible');
+    cy.get('#contacto a[download]').should('be.visible');
+    cy.screenshot('perfil-escritorio', { capture: 'viewport' });
   });
 });

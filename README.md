@@ -50,7 +50,7 @@ GitHub Actions ejecuta la batería en pushes y pull requests a `main`, o manualm
 - Aislamiento de pruebas activado: cada caso empieza sin cookies ni almacenamiento de la visita anterior.
 - Esperas por estados visibles, sin pausas fijas ni reintentos que oculten fallos.
 - No se ignoran errores JavaScript de la aplicación.
-- Un único comando reutilizable para entrar al reino. Las aserciones permanecen junto a cada escenario.
+- Pasos escritos de forma explícita, sin bucles que generen tests ni comandos personalizados. La preparación del reino está en el `beforeEach` de su archivo.
 - La música se desactiva y se selecciona calidad fluida durante las pruebas del reino.
 - El CV se comprueba por estado HTTP, tipo de contenido y cabecera binaria PDF.
 
@@ -62,5 +62,11 @@ El sitio puede cambiar de forma independiente a este repositorio. Una caída, ca
 
 ## Referencias
 
+Los escenarios están adaptados al comportamiento de este portfolio. La documentación explica los comandos utilizados; no contiene estos casos completos. La [guía de lectura](docs/guia-cypress.md) relaciona cada parte del código con su referencia y explica las comprobaciones menos evidentes.
+
+- [Primer test: visitar, interactuar y comprobar](https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test)
+- [Comprobar resultados con should](https://docs.cypress.io/api/commands/should)
+- [Consultar recursos con request](https://docs.cypress.io/api/commands/request)
+- [Cambiar el tamaño de pantalla con viewport](https://docs.cypress.io/api/commands/viewport)
 - [Configuración de Cypress](https://docs.cypress.io/app/references/configuration)
 - [Navegadores de Cypress](https://docs.cypress.io/app/references/launching-browsers)

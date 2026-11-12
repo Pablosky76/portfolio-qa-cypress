@@ -1,5 +1,18 @@
 describe('Paneles de la experiencia interactiva', () => {
-  beforeEach(() => cy.enterRealm());
+  // Antes de cada test, entramos al reino con la música desactivada.
+  beforeEach(() => {
+    cy.visit('/');
+    cy.get('label[for="entry-realm"]').click();
+    cy.get('#entry-continue').click();
+    cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
+    cy.get('[data-layout="pc"]').click();
+    cy.get('#music-enabled').uncheck();
+    cy.get('#quality-choice').select('fluid');
+    cy.get('#motion-choice').select('reduced');
+    cy.get('#controls-confirm').click();
+    cy.get('#controls-dialog').should('not.be.visible');
+    cy.get('#realm-shell').should('be.visible');
+  });
 
   it('REI-01 · abre y cierra el contacto profesional', () => {
     cy.get('#contact-action').click();
@@ -19,13 +32,41 @@ describe('Paneles de la experiencia interactiva', () => {
   it('REI-03 · recorre las cinco secciones del currículum', () => {
     cy.get('#cv-top').click();
     cy.get('#journal').should('be.visible');
-    const sections = { about: 'Pablo', experience: 'OPPLUS', projects: 'Cypress', skills: 'Java', education: 'MEDAC' };
-    Object.entries(sections).forEach(([tab, content]) => {
-      cy.get(`#journal [data-tab="${tab}"]`).click().should('have.class', 'selected');
-      cy.get('#journal-content').should('contain', content);
-      // El artículo puede ser mayor que el diálogo: comprobar su encabezado visible.
-      cy.get('#journal-content').find('h2, h3').first().scrollIntoView().should('be.visible');
-    });
+    // Perfil
+    cy.get('#journal [data-tab="about"]').click();
+    cy.get('#journal [data-tab="about"]').should('have.class', 'selected');
+    cy.get('#journal-content').should('contain', 'Pablo');
+    cy.get('#journal-content').find('h2, h3').first().scrollIntoView();
+    cy.get('#journal-content').find('h2, h3').first().should('be.visible');
+
+    // Trayectoria
+    cy.get('#journal [data-tab="experience"]').click();
+    cy.get('#journal [data-tab="experience"]').should('have.class', 'selected');
+    cy.get('#journal-content').should('contain', 'OPPLUS');
+    cy.get('#journal-content').find('h2, h3').first().scrollIntoView();
+    cy.get('#journal-content').find('h2, h3').first().should('be.visible');
+
+    // Proyectos
+    cy.get('#journal [data-tab="projects"]').click();
+    cy.get('#journal [data-tab="projects"]').should('have.class', 'selected');
+    cy.get('#journal-content').should('contain', 'Cypress');
+    cy.get('#journal-content').find('h2, h3').first().scrollIntoView();
+    cy.get('#journal-content').find('h2, h3').first().should('be.visible');
+
+    // Habilidades
+    cy.get('#journal [data-tab="skills"]').click();
+    cy.get('#journal [data-tab="skills"]').should('have.class', 'selected');
+    cy.get('#journal-content').should('contain', 'Java');
+    cy.get('#journal-content').find('h2, h3').first().scrollIntoView();
+    cy.get('#journal-content').find('h2, h3').first().should('be.visible');
+
+    // Formación
+    cy.get('#journal [data-tab="education"]').click();
+    cy.get('#journal [data-tab="education"]').should('have.class', 'selected');
+    cy.get('#journal-content').should('contain', 'MEDAC');
+    cy.get('#journal-content').find('h2, h3').first().scrollIntoView();
+    cy.get('#journal-content').find('h2, h3').first().should('be.visible');
+
     cy.get('#close-journal').click();
     cy.get('#journal').should('not.be.visible');
   });
@@ -42,7 +83,8 @@ describe('Paneles de la experiencia interactiva', () => {
   it('REI-05 · cambia a controles móviles y conserva las preferencias al reabrir', () => {
     cy.get('#controls-action').click();
     cy.get('#controls-dialog').should('be.visible');
-    cy.get('[data-layout="mobile"]').click().should('have.attr', 'aria-pressed', 'true');
+    cy.get('[data-layout="mobile"]').click();
+    cy.get('[data-layout="mobile"]').should('have.attr', 'aria-pressed', 'true');
     cy.get('#motion-choice').select('reduced');
     cy.get('#music-enabled').should('not.be.checked');
     cy.get('#controls-confirm').click();

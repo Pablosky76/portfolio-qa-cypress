@@ -1,5 +1,11 @@
 # Resultados de validación
 
+## Versión simplificada · 12 de noviembre de 2026
+
+Tras sustituir los bucles por pasos explícitos y mover la preparación del reino a su `beforeEach`, se ha ejecutado de nuevo la batería completa en local: **15 correctos, 0 fallidos, 0 omitidos**, en aproximadamente 21 segundos de ejecución de las suites. Se ha generado un nuevo reporte HTML. Se mantiene el mismo alcance de comprobaciones.
+
+Entorno: macOS, Node.js 25.8.1, Cypress 15.15.0 y Electron 138. El resultado de GitHub Actions documentado más abajo corresponde a la primera versión, antes de esta simplificación.
+
 ## Ejecución local · 11 de noviembre de 2026
 
 Resultado: **15 correctos, 0 fallidos, 0 omitidos**. Duración de las tres suites: aproximadamente 20 segundos, sin incluir arranque del navegador.
