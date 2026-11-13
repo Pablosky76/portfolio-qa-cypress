@@ -24,7 +24,25 @@ En las pruebas se investigaron también fallos del entorno: Enter y Escape se re
 
 Se inspeccionaron capturas de Cypress de la interfaz, pero la escena no quedó suficientemente representada para validar visualmente el render. Se solicitó revisión interactiva; el navegador la bloqueó por un permiso guardado, incluso después de la autorización del usuario. Queda pendiente revisar la escena dibujada, además de dispositivos físicos, lector de pantalla y rendimiento sostenido. Los resultados automáticos no sustituyen esas comprobaciones.
 
-La validación pública y de GitHub Actions se registra después de publicar las correcciones.
+### Sitio público · versión 10
+
+El sitio corregido se publicó correctamente desde el commit fuente `7b53180e99f56ae1de4c7200b8ec92a1eceabf7a`. La ejecución completa contra [producción](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site) terminó con **120 aprobados, 0 fallidos y 0 omitidos**, en aproximadamente 4 minutos y 39 segundos, el 12 de noviembre de 2026. Incluye las 13 auditorías de accesibilidad. Mismo entorno local de Cypress y Chrome indicado arriba.
+
+### GitHub Actions · comprobado el 13 de noviembre de 2026
+
+La [ejecución 43318709467](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43318709467) terminó correctamente sobre el commit `3f311ab04e0b30baac75c414f8e5957d903d4820`: **120 aprobados, 0 fallidos y 0 omitidos**. Las tres tandas completaron también la subida de informes y capturas.
+
+| Tanda | Resultado | Duración de tests | Informe |
+| --- | --- | --- | --- |
+| 1 | 40 / 40 | 11 min 32 s | [portfolio-qa-tanda1-4](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43318709467/artifacts/13989368955) |
+| 2 | 40 / 40 | 7 min 31 s | [portfolio-qa-tanda2-4](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43318709467/artifacts/13989992400) |
+| 3 | 40 / 40 | 8 min 4 s | [portfolio-qa-tanda3-4](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43318709467/artifacts/13990745338) |
+
+Entorno remoto: Ubuntu, Node 22.23.4, Cypress 15.21.1 y Chrome 156/157 según el ejecutor. Los artefactos estaban disponibles al revisarlos y caducan el 26 de noviembre de 2026.
+
+### Mantenimiento del flujo automático
+
+Los registros mostraron un aviso de retirada de Node 20 en las acciones antiguas. Se actualizan las acciones oficiales a checkout 7.0.1, setup-node 7.1.0 y upload-artifact 7.0.2, que utilizan Node 24 para ejecutar la infraestructura. El proyecto continúa usando Node 22. No cambian los 120 escenarios ni sus expectativas. Se comprobará la nueva ejecución antes de dar esta actualización por validada.
 
 
 ## Baterías por categoría · 12 de noviembre de 2026

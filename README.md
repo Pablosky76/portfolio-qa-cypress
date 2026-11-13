@@ -65,3 +65,5 @@ Para revisar herramientas: `npm audit`. Un resultado sin avisos solo describe la
 Los cambios de accesibilidad detectados por esta batería se registran en [incidencias](docs/incidencias.md), con su reproducción y corrección. Sirven como ejemplos concretos para explicar cómo una prueba aporta información y protege una corrección.
 
 Para estudiar los casos antes de una entrevista: [entender y explicar el proyecto](docs/explicar-el-proyecto.md).
+
+Las acciones oficiales de GitHub se fijan en versiones concretas: [checkout 7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1), [setup-node 7.1.0](https://github.com/actions/setup-node/releases/tag/v7.1.0) y [upload-artifact 7.0.2](https://github.com/actions/upload-artifact/releases/tag/v7.0.2). Su entorno interno usa Node 24; los tests del proyecto siguen ejecutándose con Node 22.
