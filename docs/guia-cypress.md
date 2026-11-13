@@ -6,14 +6,14 @@ La idea es poder seguir cada caso de arriba abajo: preparar la página, hacer al
 
 Todos los archivos están en `cypress/e2e/`, agrupados en cinco áreas. Para empezar:
 
-1. `entrada/bienvenida.cy.js`: abrir la web, elegir una opción y continuar.
+1. `entrada/smoke-perfil.cy.js`: abrir la web, elegir una opción y continuar.
 2. `navegacion/perfil.cy.js`: recorrer el menú y volver al inicio.
 3. `entrada/contenido-perfil.cy.js`: comprobar información y enlaces profesionales.
-4. `entrada/cv.cy.js`: comprobar el PDF.
+4. `entrada/smoke-perfil.cy.js`: comprobar el PDF.
 5. `entrada/perfil-responsive.cy.js`: consultar el perfil en móvil y escritorio.
 6. `navegacion/paneles-reino.cy.js`: preparar la entrada al mundo y probar sus paneles.
 
-Por ejemplo, `npm run test:navegacion` ejecuta solo los dos casos de navegación. `npm test` ejecuta los 120 casos de las tres tandas. Los comandos completos están en el README.
+Por ejemplo, `npm run test:navegacion` ejecuta solo los dos casos de navegación. `npm test` ejecuta los 128 casos de las tres tandas. Los comandos completos están en el README.
 
 `describe` agrupa casos, `it` define un caso y `beforeEach` prepara la página antes de cada uno. Están escritos por separado para que sea fácil ver qué falla. Se conservan los identificadores del plan de pruebas.
 

@@ -15,9 +15,49 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  e2e:
+  smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      fingerprint: ${{ steps.baseline.outputs.fingerprint }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - name: Comprobar inventario de casos
+        run: npm run test:estructura
+      - name: Comprobar las herramientas de evidencia
+        run: npm run test:infra
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Registrar el sitio antes de smoke
+        id: baseline
+        run: node scripts/site-fingerprint.cjs before
+      - name: Ejecutar los ocho casos esenciales
+        run: npm run test:smoke
+      - name: Comprobar el sitio después de smoke
+        if: always() && steps.baseline.outcome == 'success'
+        env:
+          EXPECTED_SITE_FINGERPRINT: ${{ steps.baseline.outputs.fingerprint }}
+        run: node scripts/site-fingerprint.cjs after
+      - name: Guardar evidencia smoke
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: portfolio-smoke-${{ github.run_number }}
+          path: |
+            qa-evidence/
+            cypress/reports/
+            cypress/screenshots/
+          retention-days: 14
+          if-no-files-found: warn
+
+  e2e:
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -28,16 +68,29 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Comprobar las herramientas de evidencia
+        run: npm run test:infra
       - name: Instalar dependencias
         run: npm ci
+      - name: Comparar el sitio con la referencia de smoke
+        id: baseline
+        env:
+          EXPECTED_SITE_FINGERPRINT: ${{ needs.smoke.outputs.fingerprint }}
+        run: node scripts/site-fingerprint.cjs before
       - name: Ejecutar tanda ${{ matrix.tanda }} sobre el portfolio publicado
         run: npm run test:tanda${{ matrix.tanda }}
+      - name: Comprobar el sitio después de la tanda
+        if: always() && steps.baseline.outcome == 'success'
+        env:
+          EXPECTED_SITE_FINGERPRINT: ${{ needs.smoke.outputs.fingerprint }}
+        run: node scripts/site-fingerprint.cjs after
       - name: Guardar reporte y capturas
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: portfolio-qa-tanda${{ matrix.tanda }}-${{ github.run_number }}
           path: |
+            qa-evidence/
             cypress/reports/
             cypress/screenshots/
           retention-days: 14

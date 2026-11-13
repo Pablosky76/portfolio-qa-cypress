@@ -50,3 +50,9 @@ Los JSON completos de cada ejecución están en `cypress/reports/axe`, junto al 
 - **A11Y-04:** mapa con `role="group"`, círculo de posición con `role="img"` y nombres de destinos que incluyen sus números visibles.
 
 Las 13 auditorías de la versión 10 corregida pasan en local y contra el sitio público sin excluir reglas; la ejecución de GitHub Actions del 13 de noviembre también las confirma. Pendiente completar la revisión manual con lector de pantalla; no se declara conformidad WCAG completa.
+
+## MOV-08 · mochila superpuesta al acceso al castillo
+
+El 13 de noviembre la primera regresión ampliada terminó con 127/128 aprobados. En móvil, Cypress rechazó el clic en `#marker` porque `#inventory-action` lo cubría. No se añadió `force: true`: se corrigió el límite superior de la etiqueta del castillo para reservar espacio bajo los controles en móvil vertical. Publicado en Sites v18, commit `e833c91f0f39446ce584b81fd34e3a24e6d82d6d`. MOV-08 conserva su comprobación original y protege la corrección.
+
+La primera comparación de huellas también falló: Cloudflare añade identificadores por petición al HTML. Se normalizan exclusivamente los valores `r`, `t` y `ray` de su script de seguridad; los demás bytes se siguen comparando. Una quinta prueba de infraestructura comprueba que un cambio de contenido continúa detectándose. Esa primera ejecución no se usa como evidencia de una versión estable.

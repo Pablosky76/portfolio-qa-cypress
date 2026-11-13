@@ -17,22 +17,6 @@ describe('Mundo 3D · personaje y cámara', () => {
   });
 
 
-  it('MUN-01 · prepara una superficie de render con tamaño válido', () => {
-    cy.get('#scene').should('be.visible').then(($canvas) => {
-      expect($canvas[0].width).to.be.greaterThan(0);
-      expect($canvas[0].height).to.be.greaterThan(0);
-    });
-    cy.get('body').should('have.class', 'exploring');
-    cy.get('#scene').should('have.focus');
-    cy.screenshot('plaza-escritorio');
-  });
-
-  it('MUN-02 · invoca la montura desde la plaza', () => {
-    cy.get('#mount-action').click();
-    cy.get('#mount-action').should('have.attr', 'aria-pressed', 'true').and('contain', 'Desmontar');
-    cy.get('#avatar-title').should('have.text', 'Sable de la noche');
-  });
-
   it('MUN-03 · desmonta y recupera el estado del centinela', () => {
     cy.get('#mount-action').click();
     cy.get('#mount-action').should('have.attr', 'aria-pressed', 'true');

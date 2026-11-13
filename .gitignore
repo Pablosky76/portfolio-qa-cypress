@@ -9,3 +9,7 @@ cypress/downloads/
 .env.*
 !.env.example
 
+
+
+qa-evidence/
+

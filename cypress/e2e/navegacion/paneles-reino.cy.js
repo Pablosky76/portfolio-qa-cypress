@@ -14,14 +14,6 @@ describe('Interacciones · paneles y preferencias del reino', () => {
     cy.get('#realm-shell').should('be.visible');
   });
 
-  it('REI-01 · abre y cierra el contacto profesional', () => {
-    cy.get('#contact-action').click();
-    cy.get('#contact-dialog').should('be.visible')
-      .find('a[href="mailto:pablogmdev@proton.me"]').should('be.visible');
-    cy.get('#close-contact').click();
-    cy.get('#contact-dialog').should('not.be.visible');
-  });
-
   it('REI-02 · muestra la ayuda y permite cerrarla', () => {
     cy.get('#help').click();
     cy.get('#help-dialog').should('be.visible').and('contain', 'WASD').and('contain', 'flechas');

@@ -1,28 +1,28 @@
 # Portfolio QA · Cypress
 
-120 casos para el [portfolio 3D de Pablo Gutiérrez Mata](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site), organizados en tres tandas. Cubren tanto el recorrido profesional como el mundo interactivo.
+128 casos para el [portfolio 3D de Pablo Gutiérrez Mata](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site), organizados en tres tandas. Cubren tanto el recorrido profesional como el mundo interactivo.
 
 ## Las tres tandas
 
 | Tanda | Casos | Objetivo | Herramientas añadidas |
 | --- | ---: | --- | --- |
-| 1 | 40 | Entrada, perfil, CV, personaje, cámara, salto, castillo y ajustes | Cypress y reporte Mochawesome |
-| 2 | 40 | Teclado, foco, mapa, pantallas, cámara, movimiento y contacto | Testing Library y eventos nativos con cypress-real-events |
-| 3 | 40 | Visitas guardadas, errores de carga y accesibilidad | cypress-axe y axe-core |
+| 1 | 41 | Entrada, perfil, CV, personaje, cámara, salto, castillo y ajustes | Cypress y reporte Mochawesome |
+| 2 | 44 | Teclado, foco, mapa, pantallas, cámara, movimiento y contacto | Testing Library y eventos nativos con cypress-real-events |
+| 3 | 43 | Visitas guardadas, errores de carga y accesibilidad | cypress-axe y axe-core |
 
-Son 120 escenarios distintos, no 120 ejecuciones del mismo caso en diferentes navegadores. Los 15 originales forman parte de la primera tanda. Los 22 archivos se agrupan en cinco áreas; las tandas son grupos de ejecución independientes de las carpetas. El [plan e inventario](docs/plan-de-pruebas.md) relaciona los IDs con sus escenarios; los [resultados](docs/resultados.md) distinguen comprobaciones aprobadas, fallos y límites.
+Son 128 escenarios distintos, no 128 ejecuciones del mismo caso en diferentes navegadores. La reorganización smoke integra los bloques de teclado y lectura: la batería tiene 128 casos, ocho de ellos seleccionados como smoke. Los resultados anteriores de 120 casos son históricos. Los 24 archivos se agrupan en cinco áreas; las tandas son grupos de ejecución independientes de las carpetas. El [plan e inventario](docs/plan-de-pruebas.md) relaciona los IDs con sus escenarios; los [resultados](docs/resultados.md) distinguen comprobaciones aprobadas, fallos y límites.
 
 ## Organización por áreas
 
 | Carpeta | Contenido | Casos | Comando |
 | --- | --- | ---: | --- |
 | `entrada/` | Bienvenida, contenido profesional, CV, pantallas y contacto | 12 | `npm run test:area:entrada` |
-| `navegacion/` | Menús, paneles, castillo, mapa y foco del teclado | 32 | `npm run test:area:navegacion` |
-| `personaje/` | Acciones, cámara, movimiento, controles y preferencias | 36 | `npm run test:area:personaje` |
+| `navegacion/` | Menús, paneles, castillo, mapa y foco del teclado | 35 | `npm run test:area:navegacion` |
+| `personaje/` | Acciones, cámara, movimiento, controles y preferencias | 38 | `npm run test:area:personaje` |
 | `persistencia/` | Visitas guardadas y recuperación ante fallos | 27 | `npm run test:area:persistencia` |
-| `accesibilidad/` | Auditorías automáticas con axe | 13 | `npm run test:area:accesibilidad` |
+| `accesibilidad/` | Auditorías automáticas con axe | 16 | `npm run test:area:accesibilidad` |
 
-Los comandos por categoría conservan su alcance anterior: por ejemplo, `test:entrada` ejecuta los tres casos de bienvenida y `test:area:entrada` reúne toda esa área. Las tandas siguen siendo de 40 casos y no dependen de cuántas carpetas haya.
+Los comandos por categoría seleccionan archivos completos: algunos incluyen casos smoke de otras categorías al compartir archivo. `test:area:entrada` reúne toda el área de entrada. Las tandas son de 41, 44 y 43 casos y no dependen de cuántas carpetas haya.
 
 ## Ejecutar
 
@@ -37,7 +37,7 @@ npm run test:tanda3
 npm run cy:open
 ```
 
-`npm test` ejecuta los 120 casos. Las tandas ejecutan 40, 40 y 40 respectivamente. También existen comandos por categoría, por ejemplo `npm run test:mapa`, `npm run test:persistencia` y `npm run test:accesibilidad`. `test:smoke` conserva los 10 casos de entrada y perfil; `test:realm` conserva el alias de los cinco casos iniciales de interacciones.
+`npm test` ejecuta los 128 casos. Las tandas ejecutan 41, 44 y 43 respectivamente. También existen comandos por categoría, por ejemplo `npm run test:mapa`, `npm run test:persistencia` y `npm run test:accesibilidad`. `test:smoke` conserva los 10 casos de entrada y perfil; `test:realm` conserva el alias de los cinco casos iniciales de interacciones.
 
 Para otro despliegue compatible: `CYPRESS_BASE_URL=https://tu-despliegue.example npm test`. Si ejecutas desde una aplicación basada en Electron: `env -u ELECTRON_RUN_AS_NODE npm test`.
 
@@ -64,7 +64,7 @@ GitHub Actions ejecuta las tres tandas en trabajos separados y conserva reportes
 
 ## Límites
 
-120 casos no garantizan por sí solos una calidad total. No hay comparación de píxeles, medición de FPS, pruebas completas de colisiones ni comprobación visual de mallas y animaciones. Un canvas visible con dimensiones válidas no demuestra que todos los objetos 3D se dibujen correctamente. Los tamaños de pantalla simulados no sustituyen dispositivos táctiles reales.
+128 casos no garantizan por sí solos una calidad total. No hay comparación de píxeles, medición de FPS, pruebas completas de colisiones ni comprobación visual de mallas y animaciones. Un canvas visible con dimensiones válidas no demuestra que todos los objetos 3D se dibujen correctamente. Los tamaños de pantalla simulados no sustituyen dispositivos táctiles reales.
 
 Axe detecta parte de los problemas del documento HTML; no evalúa la comprensión de la escena 3D ni certifica conformidad WCAG. Quedan revisiones manuales de lector de pantalla, contraste visual sobre la escena, navegación completa, rendimiento, audio y dispositivos reales. El sitio puede cambiar independientemente de este repositorio; los fallos deben investigarse antes de modificar una expectativa.
 
@@ -79,3 +79,12 @@ Los cambios de accesibilidad detectados por esta batería se registran en [incid
 Para estudiar los casos antes de una entrevista: [entender y explicar el proyecto](docs/explicar-el-proyecto.md).
 
 Las acciones oficiales de GitHub se fijan en versiones concretas: [checkout 7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1), [setup-node 7.1.0](https://github.com/actions/setup-node/releases/tag/v7.1.0) y [upload-artifact 7.0.2](https://github.com/actions/upload-artifact/releases/tag/v7.0.2). Su entorno interno usa Node 24; los tests del proyecto siguen ejecutándose con Node 22.
+
+
+## Smoke y regresión
+
+`npm run test:smoke` selecciona ocho casos existentes en dos archivos, sin copiar sus cuerpos. `npm run test:regresion` ejecuta todos los casos, incluida esa misma selección. `npm run test:estructura` comprueba IDs únicos y la cobertura de las tandas antes de abrir Chrome. Consulta [smoke](docs/smoke.md) para el alcance y los límites.
+
+## Validar una versión
+
+Consulta [regresión](docs/regresion.md) antes de ejecutar y completa el [registro de validación](docs/validacion-pendiente.md) con evidencias reales. Actions compara las huellas de los recursos declarados al principio/final de cada trabajo. Una diferencia invalida la referencia de versión. `npm run test:infra` comprueba esa herramienta sin abrir el navegador ni acceder al sitio.

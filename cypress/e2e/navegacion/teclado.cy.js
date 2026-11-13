@@ -15,20 +15,20 @@ describe('Teclado · foco, diálogos y atajos', () => {
   });
 
 
-  it('TEC-01 · Escape cierra la ayuda y devuelve el foco al mundo', () => {
+  it('TEC-01 · Escape cierra la ayuda y devuelve el foco al botón de origen', () => {
     cy.findByRole('button', { name: 'Cómo explorar' }).click();
     cy.findByRole('dialog', { name: 'Guía del viajero' }).should('be.visible');
     cy.realPress('Escape');
     cy.get('#help-dialog').should('not.be.visible');
-    cy.get('#scene').should('have.focus');
+    cy.get('#help').should('have.focus');
   });
 
-  it('TEC-02 · Escape cierra el mapa y devuelve el foco al mundo', () => {
+  it('TEC-02 · Escape cierra el mapa y devuelve el foco al botón de origen', () => {
     cy.findByRole('button', { name: 'Abrir mapa del reino' }).click();
     cy.findByRole('dialog', { name: 'Mapa del reino' }).should('be.visible');
     cy.realPress('Escape');
     cy.get('#map-dialog').should('not.be.visible');
-    cy.get('#scene').should('have.focus');
+    cy.get('#map-action').should('have.focus');
   });
 
   it('TEC-03 · Escape cierra el currículum', () => {
@@ -36,7 +36,7 @@ describe('Teclado · foco, diálogos y atajos', () => {
     cy.findByRole('dialog', { name: 'Pablo Gutiérrez Mata' }).should('be.visible');
     cy.realPress('Escape');
     cy.get('#journal').should('not.be.visible');
-    cy.get('#scene').should('have.focus');
+    cy.get('#cv-top').should('have.focus');
   });
 
   it('TEC-04 · Escape cierra el contacto', () => {
@@ -44,7 +44,7 @@ describe('Teclado · foco, diálogos y atajos', () => {
     cy.findByRole('dialog', { name: 'Contacto profesional' }).should('be.visible');
     cy.realPress('Escape');
     cy.get('#contact-dialog').should('not.be.visible');
-    cy.get('#scene').should('have.focus');
+    cy.get('#contact-action').should('have.focus');
   });
 
   it('TEC-05 · Tab avanza entre los controles del contacto', () => {
@@ -105,5 +105,40 @@ describe('Teclado · foco, diálogos y atajos', () => {
     cy.realPress('Enter');
     cy.get('#journal-content').should('contain', 'MEDAC');
     cy.findByRole('button', { name: 'Formación', exact: true }).should('have.attr', 'aria-pressed', 'true');
+  });
+
+  it('TEC-14 · Escape devuelve el foco al botón de mochila', () => {
+    cy.get('#inventory-action').click();
+    cy.get('#inventory-dialog').should('be.visible');
+    cy.realPress('Escape');
+    cy.get('#inventory-dialog').should('not.be.visible');
+    cy.get('#inventory-action').should('have.focus').and('have.attr', 'aria-expanded', 'false');
+  });
+
+  it('TEC-15 · Tab mantiene el foco dentro de la mochila', () => {
+    cy.get('#inventory-action').click();
+    cy.get('#inventory-grid button[aria-pressed="true"]').should('have.focus');
+    cy.realPress(['Shift', 'Tab']);
+    cy.get('#inventory-close').should('have.focus');
+    cy.realPress(['Shift', 'Tab']);
+    cy.focused().closest('#inventory-dialog').should('exist');
+    cy.realPress('Tab');
+    cy.get('#inventory-close').should('have.focus');
+  });
+
+  it('TEC-16 · I no abre la mochila mientras otro diálogo está activo', () => {
+    cy.get('#help').click();
+    cy.realPress('I');
+    cy.get('#help-dialog').should('be.visible');
+    cy.get('#inventory-dialog').should('not.be.visible');
+  });
+
+  it('TEC-17 · el botón de cerrar permite reabrir desde el control de origen', () => {
+    cy.get('#inventory-action').click();
+    cy.get('#inventory-close').click();
+    cy.get('#inventory-action').should('have.focus');
+    cy.realPress('Enter');
+    cy.get('#inventory-dialog').should('be.visible');
+    cy.get('#inventory-grid button[aria-pressed="true"]').should('have.focus');
   });
 });
