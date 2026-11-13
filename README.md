@@ -10,7 +10,19 @@
 | 2 | 40 | Teclado, foco, mapa, pantallas, cámara, movimiento y contacto | Testing Library y eventos nativos con cypress-real-events |
 | 3 | 40 | Visitas guardadas, errores de carga y accesibilidad | cypress-axe y axe-core |
 
-Son 120 escenarios distintos, no 120 ejecuciones del mismo caso en diferentes navegadores. Los 15 originales forman parte de la primera tanda. Cada categoría tiene su carpeta. El [plan e inventario](docs/plan-de-pruebas.md) relaciona los IDs con sus escenarios; los [resultados](docs/resultados.md) distinguen comprobaciones aprobadas, fallos y límites.
+Son 120 escenarios distintos, no 120 ejecuciones del mismo caso en diferentes navegadores. Los 15 originales forman parte de la primera tanda. Los 22 archivos se agrupan en cinco áreas; las tandas son grupos de ejecución independientes de las carpetas. El [plan e inventario](docs/plan-de-pruebas.md) relaciona los IDs con sus escenarios; los [resultados](docs/resultados.md) distinguen comprobaciones aprobadas, fallos y límites.
+
+## Organización por áreas
+
+| Carpeta | Contenido | Casos | Comando |
+| --- | --- | ---: | --- |
+| `entrada/` | Bienvenida, contenido profesional, CV, pantallas y contacto | 12 | `npm run test:area:entrada` |
+| `navegacion/` | Menús, paneles, castillo, mapa y foco del teclado | 32 | `npm run test:area:navegacion` |
+| `personaje/` | Acciones, cámara, movimiento, controles y preferencias | 36 | `npm run test:area:personaje` |
+| `persistencia/` | Visitas guardadas y recuperación ante fallos | 27 | `npm run test:area:persistencia` |
+| `accesibilidad/` | Auditorías automáticas con axe | 13 | `npm run test:area:accesibilidad` |
+
+Los comandos por categoría conservan su alcance anterior: por ejemplo, `test:entrada` ejecuta los tres casos de bienvenida y `test:area:entrada` reúne toda esa área. Las tandas siguen siendo de 40 casos y no dependen de cuántas carpetas haya.
 
 ## Ejecutar
 

@@ -4,14 +4,14 @@ La idea es poder seguir cada caso de arriba abajo: preparar la página, hacer al
 
 ## Por dónde empezar
 
-Todos los archivos están en `cypress/e2e/`, separados por categoría:
+Todos los archivos están en `cypress/e2e/`, agrupados en cinco áreas. Para empezar:
 
 1. `entrada/bienvenida.cy.js`: abrir la web, elegir una opción y continuar.
 2. `navegacion/perfil.cy.js`: recorrer el menú y volver al inicio.
-3. `contenido/perfil.cy.js`: comprobar información y enlaces profesionales.
-4. `documentos/cv.cy.js`: comprobar el PDF.
-5. `responsive/perfil.cy.js`: consultar el perfil en móvil y escritorio.
-6. `interacciones/reino.cy.js`: preparar la entrada al mundo y probar sus paneles.
+3. `entrada/contenido-perfil.cy.js`: comprobar información y enlaces profesionales.
+4. `entrada/cv.cy.js`: comprobar el PDF.
+5. `entrada/perfil-responsive.cy.js`: consultar el perfil en móvil y escritorio.
+6. `navegacion/paneles-reino.cy.js`: preparar la entrada al mundo y probar sus paneles.
 
 Por ejemplo, `npm run test:navegacion` ejecuta solo los dos casos de navegación. `npm test` ejecuta los 120 casos de las tres tandas. Los comandos completos están en el README.
 
@@ -54,7 +54,7 @@ Son referencias de los comandos, no la fuente del contenido profesional ni de lo
 - Hay algo de repetición para poder leer cada escenario sin saltar a otras funciones.
 - Móvil y escritorio tienen su propio `it`.
 - Las cinco pestañas del CV se prueban con pasos explícitos.
-- El archivo `support/e2e.js` solo activa el reporte.
+- El archivo `support/e2e.js` registra el reporte, Testing Library, axe y los eventos nativos.
 - No se han añadido pausas fijas ni se han quitado comprobaciones para simplificar.
 
 Antes de presentar el proyecto, conviene ejecutar un caso en `npm run cy:open`, seguir sus comandos y explicar qué fallo detectaría cada `should`. Los enlaces ayudan a estudiar los comandos; entender los resultados esperados requiere conocer el sitio.
@@ -62,7 +62,7 @@ Antes de presentar el proyecto, conviene ejecutar un caso en `npm run cy:open`, 
 
 ## Ampliación en tres tandas
 
-Estudia primero `mundo3d/acciones.cy.js`: interacción seguida de una aserción. Después, `teclado/foco.cy.js`: `findByRole` busca el control por el nombre que expone a tecnologías de asistencia. Por último, `recuperacion/fallos.cy.js`: el test prepara una condición de fallo y comprueba cómo responde la aplicación.
+Estudia primero `personaje/acciones.cy.js`: interacción seguida de una aserción. Después, `navegacion/teclado.cy.js`: `findByRole` busca el control por el nombre que expone a tecnologías de asistencia. Por último, `persistencia/fallos.cy.js`: el test prepara una condición de fallo y comprueba cómo responde la aplicación.
 
 | Comando o biblioteca | Para qué se usa aquí | Documentación |
 | --- | --- | --- |
@@ -90,4 +90,4 @@ Los casos CAM e INP usan `realMouseWheel`, `realMouseDown`, `realMouseMove` y `r
 
 Los tests de parada esperan guardados posteriores a la frenada y comprueban que la posición ya no cambia. El umbral de tiempo pertenece a la condición observada; no se usa una pausa fija para dar por hecho que el personaje se ha detenido.
 
-En `recuperacion/fallos.cy.js` se desactiva la caché de Chrome durante cada caso y se restaura al terminar. Si el módulo ya está en caché, no se hace una petición y `intercept` no puede simular su fallo. Es una de las soluciones descritas en [Cypress: intercept y caché](https://docs.cypress.io/api/commands/intercept#cyintercept-and-request-caching). Esta preparación afecta al navegador de pruebas, no al sitio publicado.
+En `persistencia/fallos.cy.js` se desactiva la caché de Chrome durante cada caso y se restaura al terminar. Si el módulo ya está en caché, no se hace una petición y `intercept` no puede simular su fallo. Es una de las soluciones descritas en [Cypress: intercept y caché](https://docs.cypress.io/api/commands/intercept#cyintercept-and-request-caching). Esta preparación afecta al navegador de pruebas, no al sitio publicado.

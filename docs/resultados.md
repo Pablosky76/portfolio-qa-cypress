@@ -1,5 +1,16 @@
 # Resultados de validación
 
+## Reorganización en cinco áreas · 13 de noviembre de 2026
+
+Los 22 archivos de pruebas pasan de 18 carpetas a cinco áreas: entrada, navegación, personaje, persistencia y accesibilidad. El contenido de los archivos y los 120 IDs se conserva sin cambios. Se actualizaron las rutas de los comandos y del inventario, y se añadieron comandos para ejecutar cada área.
+
+Validación estructural: cada comando anterior selecciona los mismos casos; las tres tandas suman 40 + 40 + 40 sin duplicados ni omisiones. Los enlaces locales de la documentación apuntan a archivos existentes.
+
+Regresión ejecutada en Chrome desde el equipo local contra el sitio publicado con `npm test`: **120 aprobados, 0 fallidos y 0 omitidos**, en 22 archivos. Duración de los casos según Cypress: **4 min 24 s**. El informe se genera en `cypress/reports/html/index.html` y está excluido de Git.
+
+Esta comprobación corresponde a la reorganización. Las ejecuciones de Actions enlazadas a continuación son anteriores; la subida de este cambio activa una nueva ejecución. La comprobación no sustituye una revisión visual manual del render 3D.
+
+
 ## Última revisión · 13 de noviembre de 2026
 
 **120 tests aprobados, 0 fallidos y 0 omitidos** en la [ejecución 43386709260](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43386709260), sobre el commit `825fa69635f9ef28440602b2eba260c3c2b8f4eb` y el sitio público versión 10.
