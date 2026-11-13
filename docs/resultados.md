@@ -1,5 +1,20 @@
 # Resultados de validación
 
+## Última revisión · 13 de noviembre de 2026
+
+**120 tests aprobados, 0 fallidos y 0 omitidos** en la [ejecución 43386709260](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43386709260), sobre el commit `825fa69635f9ef28440602b2eba260c3c2b8f4eb` y el sitio público versión 10.
+
+| Tanda | Resultado | Duración de tests | Informe |
+| --- | --- | --- | --- |
+| 1 | 40 / 40 | 11 min 28 s | [portfolio-qa-tanda1-5](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43386709260/artifacts/14019656346) |
+| 2 | 40 / 40 | 10 min 23 s | [portfolio-qa-tanda2-5](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43386709260/artifacts/14019104393) |
+| 3 | 40 / 40 | 5 min 43 s | [portfolio-qa-tanda3-5](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43386709260/artifacts/14019014121) |
+
+Las acciones oficiales actualizadas completan la instalación, ejecución y subida de los tres artefactos. Sus registros ya no muestran el aviso de retirada de Node 20. Los informes caducan el 27 de noviembre de 2026. Auditoría local de dependencias repetida el 13 de noviembre: **0 vulnerabilidades conocidas**.
+
+La revisión visual interactiva del render 3D sigue pendiente por el permiso guardado del navegador; tampoco se declara validación en dispositivos físicos ni conformidad completa de accesibilidad. El detalle de alcance y las evidencias anteriores se conservan debajo.
+
+
 ## Ampliación a 120 casos · 12 de noviembre de 2026
 
 **Validación local de la versión corregida: 120 aprobados, 0 fallidos, 0 omitidos.** Duración de las suites: 3 minutos y 31 segundos. Entorno: macOS, Node 25.8.1, Cypress 15.21.1, Chrome 157 sin interfaz; sitio servido localmente con las mismas rutas de entrada y perfil.
@@ -42,7 +57,7 @@ Entorno remoto: Ubuntu, Node 22.23.4, Cypress 15.21.1 y Chrome 156/157 según el
 
 ### Mantenimiento del flujo automático
 
-Los registros mostraron un aviso de retirada de Node 20 en las acciones antiguas. Se actualizan las acciones oficiales a checkout 7.0.1, setup-node 7.1.0 y upload-artifact 7.0.2, que utilizan Node 24 para ejecutar la infraestructura. El proyecto continúa usando Node 22. No cambian los 120 escenarios ni sus expectativas. Se comprobará la nueva ejecución antes de dar esta actualización por validada.
+Los registros mostraron un aviso de retirada de Node 20 en las acciones antiguas. Se actualizan las acciones oficiales a checkout 7.0.1, setup-node 7.1.0 y upload-artifact 7.0.2, que utilizan Node 24 para ejecutar la infraestructura. El proyecto continúa usando Node 22. No cambian los 120 escenarios ni sus expectativas. La nueva ejecución completó las tres tandas y la subida de artefactos correctamente; su resultado está registrado al principio de este documento.
 
 
 ## Baterías por categoría · 12 de noviembre de 2026

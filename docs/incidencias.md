@@ -49,4 +49,4 @@ Los JSON completos de cada ejecución están en `cypress/reports/axe`, junto al 
 - **A11Y-03:** créditos con subrayado persistente.
 - **A11Y-04:** mapa con `role="group"`, círculo de posición con `role="img"` y nombres de destinos que incluyen sus números visibles.
 
-Las 13 auditorías de la versión 10 corregida pasan en local y contra el sitio público sin excluir reglas. Pendiente completar la revisión manual con lector de pantalla; no se declara conformidad WCAG completa.
+Las 13 auditorías de la versión 10 corregida pasan en local y contra el sitio público sin excluir reglas; la ejecución de GitHub Actions del 13 de noviembre también las confirma. Pendiente completar la revisión manual con lector de pantalla; no se declara conformidad WCAG completa.
