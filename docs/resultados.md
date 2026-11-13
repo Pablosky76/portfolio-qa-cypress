@@ -13,7 +13,14 @@ Sitio público v18, commit de Sites `e833c91f0f39446ce584b81fd34e3a24e6d82d6d`. 
 
 La primera regresión ampliada dio 127/128 y detectó una superposición de la mochila sobre el acceso al castillo en móvil. Se corrigió el producto, se repitió la categoría y después smoke y regresión completas. La primera herramienta de huellas también detectó diferencias debidas a identificadores variables de Cloudflare; se corrigió y añadió una comprobación específica. Los detalles se conservan en incidencias.md.
 
-[Actions de esta integración](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131): smoke aprobado; las tres tandas estaban en curso al registrar este resultado. No se atribuye aquí un aprobado completo de CI todavía. Los artefactos de cada trabajo conservan informes, capturas y huellas durante 14 días.
+[Actions de esta integración](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131): **completado correctamente**. Smoke 8/8; regresión 128/128 repartidos en tandas de 41, 44 y 43 casos. Los cuatro trabajos terminaron con éxito, incluidas las comparaciones inicial/final del sitio. La selección smoke pertenece a los 128 escenarios; no se suma como ocho casos únicos adicionales.
+
+Informes, capturas y huellas disponibles hasta el **27 de noviembre de 2026**:
+
+- [Smoke](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131/artifacts/14049667923).
+- [Tanda 1](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131/artifacts/14051506996).
+- [Tanda 2](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131/artifacts/14052970318).
+- [Tanda 3](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43449756131/artifacts/14051811305).
 
 Informe local: `cypress/reports/html/index.html`. Evidencias locales: `qa-evidence/site-before.json` y `site-after.json`; son archivos generados excluidos de Git.
 
