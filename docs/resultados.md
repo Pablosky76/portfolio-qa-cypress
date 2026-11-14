@@ -17,7 +17,11 @@ Validación:
 
 La primera regresión de la presentación dio 126/128 al descubrir que la cabecera móvil interceptaba el acceso al mapa. Se corrigió el producto; MOV-05 y AXE-12 conservan las comprobaciones que detectaron el problema. Véase incidencias.md.
 
-[Actions de la publicación corregida](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562): smoke aprobado; las tres tandas continúan en ejecución al registrar este cierre local. El resultado remoto completo no se declara aún aprobado.
+[Actions de la publicación corregida](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562): **completado correctamente**. Registros revisados: smoke 8/8 (48 s); tanda 1, 41/41 (8 min 49 s); tanda 2, 44/44 (7 min 03 s); tanda 3, 43/43 (6 min 53 s). Los cuatro trabajos verificaron la misma huella inicial/final del sitio. Son 128 escenarios únicos; los ocho smoke forman parte de ese total.
+
+Los cuatro artefactos están disponibles hasta el **28 de noviembre de 2026**: [smoke](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562/artifacts/14125721087), [tanda 1](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562/artifacts/14125083671), [tanda 2](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562/artifacts/14125438434) y [tanda 3](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562/artifacts/14125378502).
+
+La ejecución anterior 43623378524 figura cancelada al ser sustituida por otra, según la política de concurrencia del workflow. Una cancelación no equivale a que todos sus casos hayan fallado.
 
 El repositorio del portfolio incorpora quality.yml para comprobar el motor y la generación de páginas. Su estado remoto no ha podido consultarse con esta conexión. La publicación Git de Vercel y los disparadores del repositorio QA siguen siendo flujos independientes; la ficha lo explica.
 
