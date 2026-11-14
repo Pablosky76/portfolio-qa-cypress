@@ -9,6 +9,9 @@ describe('Smoke · Entrada · elección de recorrido', () => {
     cy.get('#entry-continue').should('be.disabled');
     cy.get('#entry-selection').should('contain', 'Elige una opción');
     cy.get('#realm-shell').should('not.be.visible');
+    cy.get('#qa-entry-link').should('be.visible').and('have.attr', 'href', 'proyecto.html').click();
+    cy.location('pathname').should('eq', '/proyecto');
+    cy.get('#pipeline').should('contain', 'Un pipeline que puedes inspeccionar');
   });
 
   it('ENT-03 · abre el perfil profesional desde la bienvenida', () => {

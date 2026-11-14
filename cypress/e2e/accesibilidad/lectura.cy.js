@@ -12,6 +12,9 @@ describe('Lectura · pantallas estrechas y controles', () => {
     cy.viewport(390, 780);
     cy.visit('/proyecto.html');
     cy.get('h1').should('contain', 'Un reino de ideas');
+    cy.get('#pipeline a[href$="/.github/workflows/cypress.yml"]').should('contain', 'workflow');
+    cy.injectAxe();
+    cy.checkA11y();
     cy.document().then(doc => {
       expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
     });
@@ -27,6 +30,8 @@ describe('Lectura · pantallas estrechas y controles', () => {
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
     cy.get('#inventory-action').click();
+    cy.get('#inventory-grid button[data-item="quality"]').should('have.attr', 'aria-pressed', 'true');
+    cy.get('#inventory-detail').should('contain', '128 escenarios');
     cy.get('#inventory-dialog').should('be.visible').then($dialog => {
       expect($dialog[0].scrollWidth).to.be.at.most($dialog[0].clientWidth);
     });

@@ -172,3 +172,7 @@ Colisiones en las geometrías publicadas, mallas y animaciones, rendimiento en v
 ## Ampliación de teclado y lectura
 
 128 casos: los 120 originales, TEC-13 a TEC-17 y LEC-01 a LEC-03. TEC-13 reside en personaje/smoke-reino.cy.js; TEC-14 a TEC-17 en navegacion/teclado.cy.js; LEC-01 a LEC-03 en accesibilidad/lectura.cy.js. La distribución de tandas cambia al mover TEC-13 al bloque smoke de la primera tanda. No conservar el reparto histórico de 40/40/40 como descripción de la batería actual.
+
+## Visibilidad del proyecto QA · 14 de noviembre de 2026
+
+ENT-01 comprueba el acceso directo a la ficha de QA desde la bienvenida. MUN-01 y MOV-01 comprueban el enlace de testing en el juego, también en móvil. AXE-13 comprueba que la bienvenida estrecha conserva el acceso sin desbordamiento; LEC-02 valida la ficha, su enlace al workflow y su accesibilidad automática; LEC-03 verifica que el escudo de calidad aparece seleccionado inicialmente en móvil. Se amplían las aserciones de estos escenarios, sin duplicar casos ni alterar los 128 IDs.

@@ -20,6 +20,7 @@ describe('Pantallas · mundo en móvil y cambios de tamaño', () => {
       expect(rect.height).to.eq(844);
     });
     cy.document().its('documentElement.scrollWidth').should('eq', 390);
+    cy.get('#qa-world-link').should('be.visible').and('have.attr', 'href', 'proyecto.html');
     cy.screenshot('plaza-movil');
   });
 

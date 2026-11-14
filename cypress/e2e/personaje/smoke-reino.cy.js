@@ -48,6 +48,7 @@ describe('Smoke · Mundo 3D · personaje y cámara', () => {
       expect($canvas[0].height).to.be.greaterThan(0);
     });
     cy.get('body').should('have.class', 'exploring');
+    cy.get('#qa-world-link').should('be.visible').and('have.attr', 'href', 'proyecto.html');
     cy.get('#scene').should('have.focus');
     cy.screenshot('plaza-escritorio');
   });
