@@ -1,5 +1,29 @@
 # Resultados de validación
 
+## QA como proyecto principal · 14 de noviembre de 2026
+
+Publicación: https://portfolio-3d-9mtr.vercel.app/proyecto. Código del portfolio: `b9b3641` (la presentación se incorporó en `131e8f1`). Código QA: `6d256a1`.
+
+La bienvenida destaca el proyecto de testing; el juego mantiene un enlace directo, la misión lo presenta y la mochila selecciona por defecto el escudo de calidad. La ficha explica escenarios, pipeline, informes y un defecto real, con enlaces al código y al workflow. El estado enlazado corresponde a Actions; no se presenta como certificación permanente de la página.
+
+Validación:
+
+- Motor y comprobaciones del portfolio: **57/57 aprobados** en local.
+- Smoke inicial sobre la propuesta local: **8/8 aprobados**.
+- Lectura, accesibilidad y teclado de la propuesta local: **28/28 aprobados**.
+- Corrección de cabecera: **12/12 casos de pantalla y otros estados aprobados** en local.
+- Regresión final contra Vercel: **128/128 aprobados**, 0 fallidos y 0 omitidos, 24 archivos; **3 min 53 s** según Cypress. Una ejecución local anterior dejó de avanzar y fue interrumpida; se repitió completa en una sesión limpia, sin relajar expectativas.
+- Huella inicial/final del contenido coincidente: `9363bdef7da6be238a0992415ccbe3fcca21ae203c0571e84b69acc43b6b55e7`.
+
+La primera regresión de la presentación dio 126/128 al descubrir que la cabecera móvil interceptaba el acceso al mapa. Se corrigió el producto; MOV-05 y AXE-12 conservan las comprobaciones que detectaron el problema. Véase incidencias.md.
+
+[Actions de la publicación corregida](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43623981562): smoke aprobado; las tres tandas continúan en ejecución al registrar este cierre local. El resultado remoto completo no se declara aún aprobado.
+
+El repositorio del portfolio incorpora quality.yml para comprobar el motor y la generación de páginas. Su estado remoto no ha podido consultarse con esta conexión. La publicación Git de Vercel y los disparadores del repositorio QA siguen siendo flujos independientes; la ficha lo explica.
+
+Las comprobaciones automáticas no sustituyen una revisión visual manual de WebGL, dispositivos físicos, zoom real o lector de pantalla.
+
+
 ## Migración del destino a Vercel · 14 de noviembre de 2026
 
 Destino: https://portfolio-3d-9mtr.vercel.app. Cypress, la herramienta de huellas y GitHub Actions apuntan a este dominio. La URL puede sustituirse mediante CYPRESS_BASE_URL.
