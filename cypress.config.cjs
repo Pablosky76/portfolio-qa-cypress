@@ -18,7 +18,7 @@ module.exports = defineConfig({
     saveJson: true
   },
   e2e: {
-    baseUrl: 'https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site',
+    baseUrl: 'https://portfolio-3d-9mtr.vercel.app',
     setupNodeEvents(on, config) {
       const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib');
       const { rmSync } = require('node:fs');

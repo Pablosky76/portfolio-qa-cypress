@@ -1,5 +1,14 @@
 # Resultados de validación
 
+## Migración del destino a Vercel · 14 de noviembre de 2026
+
+Destino: https://portfolio-3d-9mtr.vercel.app. Cypress, la herramienta de huellas y GitHub Actions apuntan a este dominio. La URL puede sustituirse mediante CYPRESS_BASE_URL.
+
+Smoke local: **8/8 aprobados**, 0 fallidos y 0 omitidos, 7 segundos según Cypress. Inventario de 128 casos y cinco pruebas de infraestructura aprobados. Huella inicial/final coincidente: `cf0c6211a83f7fda8ab178968c618d04bbbb83ee3f45a2a1fde6f82d92e8844f`.
+
+La subida de este cambio inicia smoke y las tres tandas en Actions contra Vercel. Su resultado completo queda pendiente; los 128 aprobados anteriores corresponden a Sites y se conservan a continuación como historial. Esta configuración no añade aún un disparador desde los despliegues del repositorio del portfolio.
+
+
 ## Validación ampliada · 13 de noviembre de 2026
 
 Sitio público v18, commit de Sites `e833c91f0f39446ce584b81fd34e3a24e6d82d6d`. Batería QA integrada en `ab08f95`. Entorno local: Cypress 15.21.1, Chrome 157 sin ventana, Node 25.8.1 (Actions usa Node 22).

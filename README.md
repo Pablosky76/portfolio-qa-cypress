@@ -1,6 +1,6 @@
 # Portfolio QA · Cypress
 
-128 casos para el [portfolio 3D de Pablo Gutiérrez Mata](https://pablo-archivo-de-la-alianza.wintryapricot2.chatgpt.site), organizados en tres tandas. Cubren tanto el recorrido profesional como el mundo interactivo.
+128 casos para el [portfolio 3D de Pablo Gutiérrez Mata](https://portfolio-3d-9mtr.vercel.app), organizados en tres tandas. Cubren tanto el recorrido profesional como el mundo interactivo.
 
 ## Las tres tandas
 
@@ -88,3 +88,9 @@ Las acciones oficiales de GitHub se fijan en versiones concretas: [checkout 7.0.
 ## Validar una versión
 
 Consulta [regresión](docs/regresion.md) antes de ejecutar y completa el [registro de validación](docs/validacion-pendiente.md) con evidencias reales. Actions compara las huellas de los recursos declarados al principio/final de cada trabajo. Una diferencia invalida la referencia de versión. `npm run test:infra` comprueba esa herramienta sin abrir el navegador ni acceder al sitio.
+
+## Destino de las pruebas
+
+El destino habitual es Vercel: https://portfolio-3d-9mtr.vercel.app. Cypress y la comprobación de huellas apuntan a este dominio; GitHub Actions lo declara mediante `CYPRESS_BASE_URL`. Para comprobar otro alojamiento, asigna esa variable tanto a Cypress como a la herramienta de huellas. Los resultados históricos de Sites conservan su URL y versión originales.
+
+Este cambio hace que las ejecuciones del repositorio QA comprueben Vercel; por sí solo no dispara las pruebas cuando se publica el repositorio del portfolio.
