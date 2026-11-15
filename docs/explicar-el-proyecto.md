@@ -1,6 +1,8 @@
 # Entender y explicar el proyecto
 
-El objetivo no es memorizar 120 tests. Es entender por qué existen, qué evidencia aportan y qué se hizo cuando fallaron.
+Para preparar una entrevista caso por caso: [guía completa para defender los 128 tests](defender-todos-los-tests.md).
+
+El objetivo no es memorizar 128 tests. Es entender por qué existen, qué evidencia aportan y qué se hizo cuando fallaron.
 
 ## Seis casos para empezar
 
@@ -24,13 +26,13 @@ El objetivo no es memorizar 120 tests. Es entender por qué existen, qué eviden
 
 ## Decisiones que merecen una explicación
 
-- **Tres tandas de 40:** separan funcionalidad básica, interacción y resistencia/accesibilidad; se pueden ejecutar y revisar independientemente.
+- **Tres tandas de 41, 44 y 43:** separan funcionalidad básica, interacción y resistencia/accesibilidad; se pueden ejecutar y revisar independientemente.
 - **Sin pausas fijas:** se espera a un estado o una petición. En movimiento, el guardado periódico sirve de evidencia.
 - **Sin reintentos que tapen fallos:** se investiga si el defecto está en el producto, la prueba o el entorno.
 - **Eventos nativos cuando hacen falta:** Enter y Escape se contrastaron con ejemplos mínimos antes de cambiar de comando. El comportamiento esperado se mantuvo.
 - **Datos inválidos preparados:** permiten reproducir corrupción o falta de permisos sin dañar datos de un visitante real.
 - **Axe con reglas completas:** un fallo bloquea la tanda. No demuestra por sí solo conformidad de accesibilidad.
-- **120 E2E y 33 tests del motor:** son capas diferentes y se cuentan por separado. Los E2E protegen recorridos; los del motor ejercitan cálculos y colisiones aislados.
+- **128 E2E y 57 comprobaciones del motor:** son capas diferentes y se cuentan por separado. Los E2E protegen recorridos; los del motor ejercitan cálculos y colisiones aislados.
 
 ## Un ejemplo de investigación
 
