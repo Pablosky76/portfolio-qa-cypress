@@ -176,3 +176,7 @@ Colisiones en las geometrías publicadas, mallas y animaciones, rendimiento en v
 ## Visibilidad del proyecto QA · 14 de noviembre de 2026
 
 ENT-01 comprueba el acceso directo a la ficha de QA desde la bienvenida. MUN-01 y MOV-01 comprueban el enlace de testing en el juego, también en móvil. AXE-13 comprueba que la bienvenida estrecha conserva el acceso sin desbordamiento; LEC-02 valida la ficha, su enlace al workflow y su accesibilidad automática; LEC-03 verifica que el escudo de calidad aparece seleccionado inicialmente en móvil. Se amplían las aserciones de estos escenarios, sin duplicar casos ni alterar los 128 IDs.
+
+## Sustitución del audio · 16 de noviembre de 2026
+
+AJU-05 conserva las comprobaciones de silencio y añade activación mediante clic nativo, reproducción desde blob, avance temporal sin error y pausa al silenciar. No aumenta el contador de 128 casos. La publicación retira el MP3 basado en SoundFont y genera el nuevo ambiente desde código; la huella incluye ahora el generador y sus avisos públicos.

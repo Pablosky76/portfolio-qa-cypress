@@ -62,6 +62,20 @@ describe('Ajustes · controles, movimiento y sonido', () => {
     });
     cy.get('#controls-action').click();
     cy.get('#music-enabled').should('not.be.checked');
+    cy.get('#controls-confirm').click();
+    // Entrada nativa: comprobamos reproducción real del ambiente sintetizado.
+    cy.get('#sound').realClick();
+    cy.get('#realm-score').should(($audio) => {
+      expect($audio[0].paused).to.eq(false);
+      expect($audio[0].currentSrc).to.match(/^blob:/);
+      expect($audio[0].currentTime).to.be.greaterThan(0);
+      expect($audio[0].error).to.eq(null);
+    });
+    cy.get('#sound').should('have.attr', 'aria-pressed', 'true').realClick();
+    cy.get('#realm-score').should(($audio) => {
+      expect($audio[0].paused).to.eq(true);
+    });
+    cy.get('#sound').should('have.attr', 'aria-pressed', 'false');
   });
 
   it('AJU-06 · permite seleccionar calidad automática', () => {

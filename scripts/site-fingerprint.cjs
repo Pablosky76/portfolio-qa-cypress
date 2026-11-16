@@ -1,6 +1,6 @@
 const {createHash}=require('node:crypto');
 const fs=require('node:fs');
-const paths=['/','/perfil.html','/proyecto.html','/app.js','/bootstrap.js','/profile.js','/style.css','/experience.css','/profile-page.css','/project-page.css','/accessibility.css','/inventory.js','/inventory-data.js','/inventory-controls.js','/inventory.css','/dialog-focus.js','/readability.js','/frame-loop.js','/physics-world.js','/scene-physics.js','/adventure-state.js','/visit-state.js','/resource-policy.js','/performance-policy.js','/characters.js','/realm-data.js','/realm-architecture.js','/archive-decor.js','/ambient-score.js','/cv-pablo-gutierrez-mata.pdf'];
+const paths=['/','/perfil.html','/proyecto.html','/app.js','/bootstrap.js','/profile.js','/style.css','/experience.css','/profile-page.css','/project-page.css','/accessibility.css','/inventory.js','/inventory-data.js','/inventory-controls.js','/inventory.css','/dialog-focus.js','/readability.js','/frame-loop.js','/physics-world.js','/scene-physics.js','/adventure-state.js','/visit-state.js','/resource-policy.js','/performance-policy.js','/characters.js','/realm-data.js','/realm-architecture.js','/archive-decor.js','/ambient-score.js','/audio/ambient-tone.js','/audio/CREDITS.txt','/audio/MIT.txt','/cv-pablo-gutierrez-mata.pdf'];
 // Cloudflare añade identificadores por petición; el resto del HTML se conserva.
 function stableBytes(path, bytes) {
   if (!['/', '/perfil.html', '/proyecto.html'].includes(path)) return bytes;

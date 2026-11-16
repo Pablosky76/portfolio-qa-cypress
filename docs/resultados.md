@@ -1,5 +1,20 @@
 # Resultados de validación
 
+## Sustitución del audio · 16 de noviembre de 2026
+
+Sitio: https://portfolio-3d-9mtr.vercel.app, commit del juego `c96c25a`. Se retira del despliegue actual el MP3 basado en TimGM6mb y se sustituye por un acorde sintetizado con ondas matemáticas en el navegador, sin muestras ni grabaciones externas. Generador, licencia MIT y créditos actuales se publican en /audio/. El script y los avisos del audio retirado se ofrecen en /audio/legacy-source.zip; no se cambia retroactivamente su licencia ni se borran copias antiguas.
+
+Verificación de producción: página sin referencia al MP3 antiguo; /audio/chronicles-of-the-archive.mp3 devuelve 404; generador, créditos, MIT y archivo de fuentes devuelven 200.
+
+- 62/62 comprobaciones del proyecto aprobadas en local (cinco nuevas sobre audio y procedencia).
+- 8/8 casos de ajustes y audio aprobados en la copia local.
+- **16/16 casos aprobados contra Vercel**: ocho de ajustes y ocho smoke, 0 fallidos y 0 omitidos, 19 segundos según Cypress. AJU-05 comprueba reproducción desde blob, avance temporal, ausencia de error y pausa tras silenciar. No acredita una escucha subjetiva ni todos los dispositivos.
+- Cinco comprobaciones de infraestructura e inventario de 128 IDs únicos aprobados. AJU-05 se amplía sin añadir otro ID.
+- Huella inicial/final coincidente: `f39b0e269814b7561283c504e004db181491ee35986f305d1b4e2669ed41f779`. La lista incluye ahora también generador, créditos y licencia nuevos (33 recursos).
+
+La subida de las pruebas de audio inicia una nueva ejecución de Actions contra esta publicación. La regresión completa remota se considera pendiente hasta consultar su resultado; no se atribuyen a esta versión los 128 aprobados de publicaciones anteriores.
+
+
 ## QA como proyecto principal · 14 de noviembre de 2026
 
 Publicación: https://portfolio-3d-9mtr.vercel.app/proyecto. Código del portfolio: `b9b3641` (la presentación se incorporó en `131e8f1`). Código QA: `6d256a1`.
