@@ -1,5 +1,12 @@
 # Resultados de validación
 
+## Revisión previa a LinkedIn · 16 de noviembre de 2026
+
+[Actions de la versión con música CC0](https://github.com/Pablosky76/portfolio-qa-cypress/actions/runs/43866615545): **completado correctamente**. QA `3ec7fc7`, portfolio `8e38b21`. Smoke 8/8; tandas 41/41, 44/44 y 43/43. Son 128 casos únicos, con cero fallidos y omitidos; los ocho smoke pertenecen a ese total. Registros consultados y huella inicial/final idéntica en los cuatro trabajos: `259a4452614ee51613a81ab084cbb78daa8d330ea418f833420d7ca2f60644dd`.
+
+Además: 63/63 pruebas locales del portfolio, 5/5 de infraestructura, inventario correcto y npm audit sin vulnerabilidades conocidas. Sitio, perfil, ficha QA, PDF y enlaces públicos de evidencias accesibles. No se ha realizado escucha ni nueva revisión visual manual del WebGL. Véase [revisión y límites](presentacion/revision-2026-11-16.md).
+
+
 ## Sustitución del audio · 16 de noviembre de 2026
 
 Sitio: https://portfolio-3d-9mtr.vercel.app, commit del juego `c96c25a`. Se retira del despliegue actual el MP3 basado en TimGM6mb y se sustituye por un acorde sintetizado con ondas matemáticas en el navegador, sin muestras ni grabaciones externas. Generador, licencia MIT y créditos actuales se publican en /audio/. El script y los avisos del audio retirado se ofrecen en /audio/legacy-source.zip; no se cambia retroactivamente su licencia ni se borran copias antiguas.

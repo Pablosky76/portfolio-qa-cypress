@@ -37,7 +37,7 @@ npm run test:tanda3
 npm run cy:open
 ```
 
-`npm test` ejecuta los 128 casos. Las tandas ejecutan 41, 44 y 43 respectivamente. También existen comandos por categoría, por ejemplo `npm run test:mapa`, `npm run test:persistencia` y `npm run test:accesibilidad`. `test:smoke` conserva los 10 casos de entrada y perfil; `test:realm` conserva el alias de los cinco casos iniciales de interacciones.
+`npm test` ejecuta los 128 casos. Las tandas ejecutan 41, 44 y 43 respectivamente. También existen comandos por categoría, por ejemplo `npm run test:mapa`, `npm run test:persistencia` y `npm run test:accesibilidad`. `test:smoke` ejecuta ocho casos esenciales de perfil y reino, incluidos en los 128 escenarios; `test:realm` selecciona los archivos de paneles e interacciones del reino.
 
 Para otro despliegue compatible: `CYPRESS_BASE_URL=https://tu-despliegue.example npm test`. Si ejecutas desde una aplicación basada en Electron: `env -u ELECTRON_RUN_AS_NODE npm test`.
 
