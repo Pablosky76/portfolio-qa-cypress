@@ -213,3 +213,8 @@ La [primera ejecución remota](https://github.com/Pablosky76/portfolio-qa-cypres
 GitHub confirmó el éxito de la ejecución de la batería y de la subida del reporte y las capturas. El artefacto `portfolio-qa-1` está disponible en esa ejecución y tiene caducidad prevista para el 25 de noviembre de 2026 a las 22:55 (Europe/Madrid).
 
 Esto verifica la primera ejecución en Ubuntu con Node.js 22, además de la pasada local. No supone que todas las futuras versiones del sitio estén verificadas: cada ejecución comprueba el despliegue público disponible en ese momento.
+
+
+## Banda sonora CC0 · 16 de noviembre de 2026
+
+El sitio usa ahora el MP3 local Fantasy Orchestral Theme de Joth (CC0), en lugar del generador en memoria. AJU-05 comprueba la URL del archivo, conserva las comprobaciones de reproducción, silencio y recuperación desde volumen cero. La huella incluye MP3, créditos, manifiesto y licencia. Validación de esta actualización: estructura de 128 casos y cinco pruebas de infraestructura aprobadas. No se ha ejecutado Cypress manualmente ni realizado escucha para este cambio; los resultados E2E anteriores pertenecen a sus respectivas versiones y la nueva ejecución de CI se lanzará al publicar.

@@ -180,3 +180,8 @@ ENT-01 comprueba el acceso directo a la ficha de QA desde la bienvenida. MUN-01 
 ## Sustitución del audio · 16 de noviembre de 2026
 
 AJU-05 conserva las comprobaciones de silencio y añade activación mediante clic nativo, reproducción desde blob, avance temporal sin error y pausa al silenciar. No aumenta el contador de 128 casos. La publicación retira el MP3 basado en SoundFont y genera el nuevo ambiente desde código; la huella incluye ahora el generador y sus avisos públicos.
+
+
+## Banda sonora CC0 · 16 de noviembre de 2026
+
+El sitio usa ahora el MP3 local Fantasy Orchestral Theme de Joth (CC0), en lugar del generador en memoria. AJU-05 comprueba la URL del archivo, conserva las comprobaciones de reproducción, silencio y recuperación desde volumen cero. La huella incluye MP3, créditos, manifiesto y licencia. Validación de esta actualización: estructura de 128 casos y cinco pruebas de infraestructura aprobadas. No se ha ejecutado Cypress manualmente ni realizado escucha para este cambio; los resultados E2E anteriores pertenecen a sus respectivas versiones y la nueva ejecución de CI se lanzará al publicar.

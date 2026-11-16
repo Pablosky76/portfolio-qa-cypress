@@ -63,11 +63,13 @@ describe('Ajustes · controles, movimiento y sonido', () => {
     cy.get('#controls-action').click();
     cy.get('#music-enabled').should('not.be.checked');
     cy.get('#controls-confirm').click();
-    // Entrada nativa: comprobamos reproducción real del ambiente sintetizado.
+    // Entrada nativa: comprobamos reproducción de la canción CC0 alojada en el portfolio.
     cy.get('#sound').realClick();
     cy.get('#realm-score').should(($audio) => {
       expect($audio[0].paused).to.eq(false);
-      expect($audio[0].currentSrc).to.match(/^blob:/);
+      expect($audio[0].currentSrc).to.match(/\/audio\/fantasy-orchestral-theme\.mp3$/);
+      // El volumen lo gestiona GainNode; el elemento no debe atenuarlo otra vez.
+      expect($audio[0].volume).to.eq(1);
       expect($audio[0].currentTime).to.be.greaterThan(0);
       expect($audio[0].error).to.eq(null);
     });
@@ -76,6 +78,16 @@ describe('Ajustes · controles, movimiento y sonido', () => {
       expect($audio[0].paused).to.eq(true);
     });
     cy.get('#sound').should('have.attr', 'aria-pressed', 'false');
+    // Un volumen guardado en cero también se puede activar con una pulsación.
+    cy.get('#controls-action').click();
+    cy.get('#music-enabled').check();
+    cy.get('#music-volume').invoke('val', '0').trigger('input');
+    cy.get('#controls-confirm').click();
+    cy.get('#sound').should('have.attr', 'aria-pressed', 'false').realClick();
+    cy.get('#sound').should('have.attr', 'aria-pressed', 'true');
+    cy.get('#realm-score').should(($audio) => {
+      expect($audio[0].paused).to.eq(false);
+    });
   });
 
   it('AJU-06 · permite seleccionar calidad automática', () => {
