@@ -5,7 +5,7 @@ describe('Smoke · Portada · accesos directos', () => {
   });
 
   it('ENT-01 · presenta a Pablo y abre el caso de estudio en un clic', () => {
-    cy.findByRole('heading', { level: 1, name: 'Pablo Gutiérrez Mata' }).should('be.visible');
+    cy.findByRole('heading', { level: 1, name: 'Soy Pablo Gutiérrez Mata' }).should('be.visible');
     cy.get('.cover-role').should('contain', 'QA Automation');
     cy.get('#realm-shell').should('not.be.visible');
     cy.get('#qa-entry-link').should('be.visible').and('have.attr', 'href', 'proyecto.html').click();

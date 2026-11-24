@@ -12,6 +12,10 @@ describe('Portada · información para selección', () => {
           expect(body.slice(0, 5)).to.eq('%PDF-');
         });
       });
+    cy.findByRole('link', { name: 'Pruebas' }).should('be.visible')
+      .and('have.attr', 'href', 'https://github.com/Pablosky76/portfolio-qa-cypress/tree/main/cypress/e2e');
+    cy.findByRole('link', { name: 'Pipeline' }).should('be.visible')
+      .and('have.attr', 'href', 'https://github.com/Pablosky76/portfolio-qa-cypress/actions/workflows/cypress.yml');
     cy.get('@mundo.all').should('have.length', 0);
   });
 });

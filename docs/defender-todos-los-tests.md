@@ -472,7 +472,7 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/entrada/bienvenida.cy.js#L7) · [Archivo local](../cypress/e2e/entrada/bienvenida.cy.js) · Tanda 1
 
 - **Riesgo:** Que falte el contacto, el CV apunte a un archivo incorrecto o la portada cargue el juego automáticamente.
-- **Cómo lo explico:** Compruebo el enlace al correo, solicito el PDF y verifico que no se pide app.js.
+- **Cómo lo explico:** Compruebo el enlace al correo, solicito el PDF, verifico los destinos de Pruebas y Pipeline y compruebo que no se pide app.js.
 - **Límite:** El caso comprueba el enlace al correo y el archivo PDF. La entrega de correo y el contenido del CV requieren otras comprobaciones.
 - **Práctica:** Explica por qué se comprueba la cabecera del archivo PDF.
 

@@ -67,6 +67,8 @@ describe('Pantallas · mundo en móvil y cambios de tamaño', () => {
   it('MOV-07 · los ajustes siguen disponibles en una pantalla estrecha', () => {
     cy.viewport(320, 568);
     cy.get('#controls-action').click();
+    cy.findByRole('dialog', { name: 'Elige cómo explorar' })
+      .findByRole('link', { name: 'Volver al inicio' }).should('have.attr', 'href', './');
     cy.findByLabelText('Movimiento ambiental').select('full');
     cy.get('#controls-confirm').scrollIntoView().click();
     cy.get('body').should('have.attr', 'data-motion', 'full');
@@ -79,5 +81,9 @@ describe('Pantallas · mundo en móvil y cambios de tamaño', () => {
     cy.findByRole('button', { name: 'Salir a la plaza · Puerta del castillo' }).click();
     cy.get('body').should('not.have.class', 'inside');
     cy.get('#touch-pad').should('be.visible');
+    cy.findByRole('link', { name: 'Volver al inicio' }).should('be.visible').focus().realPress('Enter');
+    cy.location('pathname').should('eq', '/');
+    cy.findByRole('heading', { level: 1, name: 'Soy Pablo Gutiérrez Mata' }).should('be.visible');
+    cy.findByRole('button', { name: 'Continuar partida' }).should('exist');
   });
 });
