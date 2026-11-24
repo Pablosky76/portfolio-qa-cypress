@@ -25,11 +25,11 @@ describe('Navegación · menú y vuelta al inicio', () => {
     cy.get('#contacto h2').should('not.be.empty');
   });
 
-  it('PER-05 · vuelve a la elección de recorrido', () => {
+  it('PER-05 · vuelve a la portada del portfolio', () => {
     cy.get('.world-link').click();
     cy.location('pathname').should('eq', '/');
     cy.get('#welcome').should('be.visible');
-    cy.get('#entry-profile').should('exist');
-    cy.get('#entry-realm').should('exist');
+    cy.get('#entry-profile').should('be.visible');
+    cy.get('#entry-realm').should('be.visible');
   });
 });

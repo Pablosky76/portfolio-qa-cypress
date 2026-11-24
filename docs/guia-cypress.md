@@ -6,7 +6,7 @@ La idea es poder seguir cada caso de arriba abajo: preparar la página, hacer al
 
 Todos los archivos están en `cypress/e2e/`, agrupados en cinco áreas. Para empezar:
 
-1. `entrada/smoke-perfil.cy.js`: abrir la web, elegir una opción y continuar.
+1. `entrada/smoke-perfil.cy.js`: abrir la portada y acceder al caso de estudio o al perfil.
 2. `navegacion/perfil.cy.js`: recorrer el menú y volver al inicio.
 3. `entrada/contenido-perfil.cy.js`: comprobar información y enlaces profesionales.
 4. `entrada/smoke-perfil.cy.js`: comprobar el PDF.
@@ -20,13 +20,12 @@ Por ejemplo, `npm run test:navegacion` ejecuta solo los dos casos de navegación
 ## Un ejemplo del proyecto
 
 ```js
-cy.get('label[for="entry-profile"]').click();
-cy.get('#entry-continue').click();
+cy.get('#entry-profile').click();
 cy.location('pathname').should('eq', '/perfil');
 cy.get('h1').should('be.visible').and('contain', 'Gutiérrez Mata');
 ```
 
-Primero se pulsa la etiqueta del recorrido profesional. Después se continúa. Por último se comprueban la ruta y el encabezado de la página. El selector con `#` busca un ID del HTML. El alojamiento redirige `perfil.html` a `/perfil`, por eso se espera esa ruta.
+Se pulsa el enlace al perfil profesional y se comprueban la ruta y el encabezado de la página. El selector con `#` busca un ID del HTML. El alojamiento redirige `perfil.html` a `/perfil`, por eso se espera esa ruta.
 
 ## Documentación utilizada
 

@@ -91,6 +91,6 @@ Consulta [regresión](docs/regresion.md) antes de ejecutar y completa el [regist
 
 ## Destino de las pruebas
 
-El destino habitual es Vercel: https://portfolio-3d-9mtr.vercel.app. Cypress y la comprobación de huellas apuntan a este dominio; GitHub Actions lo declara mediante `CYPRESS_BASE_URL`. Para comprobar otro alojamiento, asigna esa variable tanto a Cypress como a la herramienta de huellas. Los resultados históricos de Sites conservan su URL y versión originales.
+El destino habitual es Vercel: https://portfolio-3d-9mtr.vercel.app. Cypress y la comprobación de huellas apuntan a este dominio; GitHub Actions lo declara mediante `CYPRESS_BASE_URL`. En GitHub Actions se puede ejecutar manualmente con `site_url` para validar una versión accesible desde el runner. Smoke, las tres tandas y sus huellas usan ese mismo destino. En local se puede establecer `CYPRESS_BASE_URL` para ambos comandos. Los resultados históricos de Sites conservan su URL y versión originales.
 
 Este cambio hace que las ejecuciones del repositorio QA comprueben Vercel; por sí solo no dispara las pruebas cuando se publica el repositorio del portfolio.

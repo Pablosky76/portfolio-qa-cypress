@@ -23,8 +23,7 @@ describe('Lectura · pantallas estrechas y controles', () => {
   it('LEC-03 · la mochila se abre en móvil sin desbordamiento y ofrece un cierre amplio', () => {
     cy.viewport(390, 780);
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('[data-layout="mobile"]').click();
     cy.get('#music-enabled').uncheck();

@@ -2,8 +2,7 @@ describe('Interacciones · paneles y preferencias del reino', () => {
   // Antes de cada test, entramos al reino con la música desactivada.
   beforeEach(() => {
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('[data-layout="pc"]').click();
     cy.get('#music-enabled').uncheck();

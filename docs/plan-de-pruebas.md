@@ -16,9 +16,9 @@ Comando: `npm run test:tanda1`.
 
 | Área | ID | Escenario |
 | --- | --- | --- |
-| [entrada](../cypress/e2e/entrada/bienvenida.cy.js) | ENT-02 | permite cambiar de recorrido manteniendo una sola elección |
+| [entrada](../cypress/e2e/entrada/bienvenida.cy.js) | ENT-02 | ofrece el CV y el contacto directamente sin cargar el juego |
 | [navegacion](../cypress/e2e/navegacion/perfil.cy.js) | PER-02 | navega a todas las secciones desde el menú |
-| [navegacion](../cypress/e2e/navegacion/perfil.cy.js) | PER-05 | vuelve a la elección de recorrido |
+| [navegacion](../cypress/e2e/navegacion/perfil.cy.js) | PER-05 | vuelve a la portada del portfolio |
 | [entrada](../cypress/e2e/entrada/contenido-perfil.cy.js) | PER-03 | ofrece destinos profesionales correctos y seguros |
 | [entrada](../cypress/e2e/entrada/perfil-responsive.cy.js) | PER-06 | mantiene contenido y contacto utilizables en móvil |
 | [entrada](../cypress/e2e/entrada/perfil-responsive.cy.js) | PER-07 | mantiene contenido y contacto utilizables en escritorio |
@@ -49,7 +49,7 @@ Comando: `npm run test:tanda1`.
 | [navegacion](../cypress/e2e/navegacion/castillo.cy.js) | CAS-05 | desmonta al entrar con la montura invocada |
 | [navegacion](../cypress/e2e/navegacion/castillo.cy.js) | CAS-06 | registra la primera crónica sin duplicarla al reabrir |
 | [navegacion](../cypress/e2e/navegacion/castillo.cy.js) | CAS-07 | completa cinco crónicas al leer todas las secciones |
-| [entrada](../cypress/e2e/entrada/smoke-perfil.cy.js) | ENT-01 | exige elegir un recorrido antes de continuar |
+| [entrada](../cypress/e2e/entrada/smoke-perfil.cy.js) | ENT-01 | presenta a Pablo y abre el caso de estudio en un clic |
 | [entrada](../cypress/e2e/entrada/smoke-perfil.cy.js) | ENT-03 | abre el perfil profesional desde la bienvenida |
 | [entrada](../cypress/e2e/entrada/smoke-perfil.cy.js) | PER-01 | presenta identidad, especialidad y experiencia QA |
 | [entrada](../cypress/e2e/entrada/smoke-perfil.cy.js) | PER-04 | entrega un CV PDF real desde el enlace de descarga |
@@ -126,7 +126,7 @@ Comando: `npm run test:tanda3`.
 | [persistencia](../cypress/e2e/persistencia/visitas.cy.js) | VIS-09 | conserva la calidad automática |
 | [persistencia](../cypress/e2e/persistencia/visitas.cy.js) | VIS-10 | conserva un volumen elegido por el visitante |
 | [persistencia](../cypress/e2e/persistencia/visitas.cy.js) | VIS-11 | no vuelve a activar la música silenciada |
-| [persistencia](../cypress/e2e/persistencia/visitas.cy.js) | VIS-12 | una visita guardada no impide elegir el perfil ligero |
+| [persistencia](../cypress/e2e/persistencia/visitas.cy.js) | VIS-12 | una visita guardada mantiene el acceso directo al perfil |
 | [persistencia](../cypress/e2e/persistencia/almacenamiento.cy.js) | DAT-01 | permite explorar si no se puede leer el almacenamiento |
 | [persistencia](../cypress/e2e/persistencia/almacenamiento.cy.js) | DAT-02 | permite explorar cuando se agota la cuota de guardado |
 | [persistencia](../cypress/e2e/persistencia/almacenamiento.cy.js) | DAT-03 | descarta crónicas desconocidas y duplicadas de una visita |

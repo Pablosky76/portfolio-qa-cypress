@@ -4,7 +4,8 @@ describe('Accesibilidad automática · entrada móvil', () => {
     cy.viewport(320, 568);
     cy.visit('/');
     cy.get('#welcome').should('be.visible');
-    cy.get('#qa-entry-link').should('be.visible').and('have.attr', 'href', 'proyecto.html');
+    cy.findByRole('link', { name: 'Descargar CV' }).should('be.visible');
+    cy.get('#qa-entry-link').scrollIntoView().should('be.visible').and('have.attr', 'href', 'proyecto.html');
     cy.get('#welcome').should(($welcome) => {
       expect($welcome[0].scrollWidth).to.be.at.most($welcome[0].clientWidth);
     });

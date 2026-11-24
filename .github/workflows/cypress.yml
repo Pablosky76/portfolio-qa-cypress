@@ -6,9 +6,14 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      site_url:
+        description: URL pública de la versión que se quiere validar
+        required: false
+        type: string
 
 env:
-  CYPRESS_BASE_URL: https://portfolio-3d-9mtr.vercel.app
+  CYPRESS_BASE_URL: ${{ inputs.site_url || 'https://portfolio-3d-9mtr.vercel.app' }}
 
 permissions:
   contents: read
@@ -80,7 +85,7 @@ jobs:
         env:
           EXPECTED_SITE_FINGERPRINT: ${{ needs.smoke.outputs.fingerprint }}
         run: node scripts/site-fingerprint.cjs before
-      - name: Ejecutar tanda ${{ matrix.tanda }} sobre el portfolio publicado
+      - name: Ejecutar tanda ${{ matrix.tanda }} sobre la versión seleccionada
         run: npm run test:tanda${{ matrix.tanda }}
       - name: Comprobar el sitio después de la tanda
         if: always() && steps.baseline.outcome == 'success'

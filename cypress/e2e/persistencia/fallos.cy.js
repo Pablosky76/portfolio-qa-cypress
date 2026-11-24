@@ -15,38 +15,31 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-visit-v1', '{roto');
     } });
-    cy.get('label[for="entry-realm"]').click();
     cy.get('#restart-visit').should('not.be.visible');
-    cy.get('#entry-selection').should('contain', 'Explora la ciudad');
-    cy.get('#entry-continue').should('be.enabled');
+    cy.findByRole('button', { name: 'Probar el juego 3D' }).should('be.visible').and('be.enabled');
   });
 
   it('REC-02 · ignora una versión de visita no compatible', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-visit-v1', JSON.stringify({ version: 99, x: 2, z: 9 }));
     } });
-    cy.get('label[for="entry-realm"]').click();
     cy.get('#restart-visit').should('not.be.visible');
-    cy.get('#entry-selection').should('contain', 'Explora la ciudad');
-    cy.get('#entry-continue').should('be.enabled');
+    cy.findByRole('button', { name: 'Probar el juego 3D' }).should('be.visible').and('be.enabled');
   });
 
   it('REC-03 · rechaza posiciones de visita que no son números', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-visit-v1', JSON.stringify({ version: 1, x: 'error', z: 9 }));
     } });
-    cy.get('label[for="entry-realm"]').click();
     cy.get('#restart-visit').should('not.be.visible');
-    cy.get('#entry-selection').should('contain', 'Explora la ciudad');
-    cy.get('#entry-continue').should('be.enabled');
+    cy.findByRole('button', { name: 'Probar el juego 3D' }).should('be.visible').and('be.enabled');
   });
 
   it('REC-04 · recupera valores por defecto si las preferencias están corruptas', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-preferences', '{roto');
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#motion-choice').should('have.value', 'system');
     cy.get('#quality-choice').should('have.value', 'auto');
@@ -57,8 +50,7 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-preferences', JSON.stringify({ volume: 5, motion: 'error', quality: 'error', music: false }));
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-volume').should('have.value', '25');
     cy.get('#motion-choice').should('have.value', 'system');
@@ -68,26 +60,23 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
   it('REC-06 · muestra una salida clara si no se descarga el mundo', () => {
     cy.intercept('GET', '**/app.js', { forceNetworkError: true }).as('mundo');
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.wait('@mundo');
     cy.get('#welcome').should('be.visible');
     cy.get('#welcome-state').should('contain', 'No se ha podido abrir el mundo');
     cy.get('#realm-shell').should('not.be.visible');
-    cy.get('#entry-continue').should('be.enabled');
+    cy.get('#entry-realm').should('be.enabled').and('be.focused');
     cy.get('#welcome').should('not.have.attr', 'aria-busy');
   });
 
   it('REC-07 · permite entrar al perfil después de fallar el mundo', () => {
     cy.intercept('GET', '**/app.js', { forceNetworkError: true }).as('mundo');
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.wait('@mundo');
     cy.get('#welcome').should('be.visible');
     cy.get('#welcome-state').should('contain', 'No se ha podido abrir el mundo');
-    cy.get('label[for=entry-profile]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-profile').click();
     cy.location('pathname').should('match', /\/perfil(?:\.html)?$/);
     cy.get('h1').should('contain', 'Pablo');
   });
@@ -95,8 +84,7 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
   it('REC-08 · el recorrido profesional no descarga el módulo 3D', () => {
     cy.intercept('GET', '**/app.js').as('mundo');
     cy.visit('/');
-    cy.get('label[for=entry-profile]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-profile').click();
     cy.get('h1').should('contain', 'Pablo');
     cy.get('@mundo.all').should('have.length', 0);
     cy.get('#scene').should('not.exist');
@@ -105,8 +93,7 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
   it('REC-09 · mantiene la plaza utilizable si falla el interior', () => {
     cy.intercept('GET', '**/archive-decor.js', { forceNetworkError: true }).as('interior');
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
@@ -127,8 +114,7 @@ describe('Recuperación · datos inválidos y recursos no disponibles', () => {
         return getContext.call(this, tipo, opciones);
       });
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();

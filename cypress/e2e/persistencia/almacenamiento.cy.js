@@ -4,8 +4,7 @@ describe('Recuperación · almacenamiento limitado y datos antiguos', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       cy.stub(ventana.Storage.prototype, 'getItem').throws(new Error('Almacenamiento bloqueado'));
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
@@ -17,8 +16,7 @@ describe('Recuperación · almacenamiento limitado y datos antiguos', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       cy.stub(ventana.Storage.prototype, 'setItem').throws(new Error('Cuota agotada'));
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
@@ -32,9 +30,8 @@ describe('Recuperación · almacenamiento limitado y datos antiguos', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-visit-v1', JSON.stringify({ version: 1, x: 2.4, z: 9, discovered: ['about', 'about', 'desconocida'] }));
     } });
-    cy.get('label[for=entry-realm]').click();
-    cy.get('#entry-selection').should('contain', '1 de 5 crónicas');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', '1 de 5 crónicas');
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
@@ -45,8 +42,7 @@ describe('Recuperación · almacenamiento limitado y datos antiguos', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-visit-v1', JSON.stringify({ version: 1, x: 9999, z: -9999, radius: 9999 }));
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').uncheck();
     cy.get('#controls-confirm').click();
@@ -62,8 +58,7 @@ describe('Recuperación · almacenamiento limitado y datos antiguos', () => {
     cy.visit('/', { onBeforeLoad(ventana) {
       ventana.localStorage.setItem('pablo-realm-preferences', '["mobile", "full"]');
     } });
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#motion-choice').should('have.value', 'system');
     cy.get('#quality-choice').should('have.value', 'auto');

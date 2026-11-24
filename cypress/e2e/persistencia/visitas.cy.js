@@ -2,8 +2,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
   // Antes de cada test, entramos al reino con la música desactivada.
   beforeEach(() => {
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('[data-layout="pc"]').click();
     cy.get('#music-enabled').uncheck();
@@ -19,9 +18,8 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#theme-action').click();
     cy.get('body').should('have.class', 'night');
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-selection').should('contain', 'Continúa tu visita');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', 'Continúa tu visita');
+    cy.findByRole('button', { name: 'Continuar partida' }).click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
     cy.get('#controls-dialog').should('not.be.visible');
@@ -33,9 +31,8 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#theme-action').click();
     cy.get('#theme-action').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-selection').should('contain', 'Continúa tu visita');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', 'Continúa tu visita');
+    cy.findByRole('button', { name: 'Continuar partida' }).click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
     cy.get('#controls-dialog').should('not.be.visible');
@@ -47,9 +44,8 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#mount-action').click();
     cy.get('#mount-action').should('have.attr', 'aria-pressed', 'true');
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-selection').should('contain', 'Continúa tu visita');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', 'Continúa tu visita');
+    cy.findByRole('button', { name: 'Continuar partida' }).click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
     cy.get('#controls-dialog').should('not.be.visible');
@@ -61,9 +57,8 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#marker').click();
     cy.get('body').should('have.class', 'inside');
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-selection').should('contain', 'Continúa tu visita');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', 'Continúa tu visita');
+    cy.findByRole('button', { name: 'Continuar partida' }).click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
     cy.get('#controls-dialog').should('not.be.visible');
@@ -77,9 +72,8 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#close-journal').click();
     cy.get('#chronicle-count').should('contain', '2 / 5');
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-selection').should('contain', 'Continúa tu visita');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-selection').should('be.visible').and('contain', 'Continúa tu visita');
+    cy.findByRole('button', { name: 'Continuar partida' }).click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
     cy.get('#controls-dialog').should('not.be.visible');
@@ -91,7 +85,6 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#cv-top').click();
     cy.get('#close-journal').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
     cy.get('#restart-visit').should('be.visible').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#controls-confirm').click();
@@ -104,8 +97,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('[data-layout=mobile]').click();
     cy.get('#controls-confirm').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('[data-layout=mobile]').should('have.attr', 'aria-pressed', 'true');
     cy.get('body').should('have.attr', 'data-controls', 'mobile');
@@ -116,8 +108,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#motion-choice').select('full');
     cy.get('#controls-confirm').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#motion-choice').should('have.value', 'full');
     cy.get('body').should('have.attr', 'data-motion', 'full');
@@ -128,8 +119,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#quality-choice').select('auto');
     cy.get('#controls-confirm').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#quality-choice').should('have.value', 'auto');
   });
@@ -139,8 +129,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     cy.get('#music-volume').invoke('val', 8).trigger('input');
     cy.get('#controls-confirm').click();
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-volume').should('have.value', '8');
     cy.get('#volume-value').should('have.text', '8 %');
@@ -148,8 +137,7 @@ describe('Persistencia · continuar la visita y preferencias', () => {
 
   it('VIS-11 · no vuelve a activar la música silenciada', () => {
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('#music-enabled').should('not.be.checked');
     cy.get('#realm-score').should(($audio) => {
@@ -157,15 +145,12 @@ describe('Persistencia · continuar la visita y preferencias', () => {
     });
   });
 
-  it('VIS-12 · una visita guardada no impide elegir el perfil ligero', () => {
+  it('VIS-12 · una visita guardada mantiene el acceso directo al perfil', () => {
     cy.get('#marker').click();
     cy.get('body').should('have.class', 'inside');
     cy.reload();
-    cy.get('label[for="entry-realm"]').click();
     cy.get('#restart-visit').should('be.visible');
-    cy.get('label[for="entry-profile"]').click();
-    cy.get('#restart-visit').should('not.be.visible');
-    cy.get('#entry-continue').click();
+    cy.get('#entry-profile').click();
     cy.location('pathname').should('match', /\/perfil(?:\.html)?$/);
     cy.get('h1').should('contain', 'Pablo');
   });

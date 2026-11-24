@@ -4,7 +4,7 @@ Estado: integrado; smoke local aprobado (8/8) contra Sites v18 el 13 de noviembr
 
 | ID | Comprueba | Archivo |
 | --- | --- | --- |
-| ENT-01 | Entrada disponible y elección requerida | entrada/smoke-perfil.cy.js |
+| ENT-01 | Nombre, especialidad y caso de estudio accesible en un clic | entrada/smoke-perfil.cy.js |
 | ENT-03 | Acceso al perfil desde la entrada, sin canvas | entrada/smoke-perfil.cy.js |
 | PER-01 | Identidad, experiencia, tecnologías y formación | entrada/smoke-perfil.cy.js |
 | PER-04 | CV responde con cabecera y contenido PDF | entrada/smoke-perfil.cy.js |

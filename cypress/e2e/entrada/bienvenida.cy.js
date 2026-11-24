@@ -1,16 +1,17 @@
 // https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test
-describe('Entrada · elección de recorrido', () => {
-  beforeEach(() => {
+describe('Portada · información para selección', () => {
+  it('ENT-02 · ofrece el CV y el contacto directamente sin cargar el juego', () => {
+    cy.intercept('GET', '**/app.js').as('mundo');
     cy.visit('/');
-  });
-
-  it('ENT-02 · permite cambiar de recorrido manteniendo una sola elección', () => {
-    cy.get('label[for="entry-profile"]').click();
-    cy.get('#entry-profile').should('be.checked');
-    cy.get('#entry-continue').should('be.enabled');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-realm').should('be.checked');
-    cy.get('#entry-profile').should('not.be.checked');
-    cy.get('#entry-continue').should('be.enabled');
+    cy.findByRole('link', { name: 'Contacto' }).should('be.visible')
+      .and('have.attr', 'href', 'mailto:pablogmdev@proton.me');
+    cy.findByRole('link', { name: 'Descargar CV' }).should('be.visible')
+      .and($link => expect($link).to.have.attr('download')).invoke('attr', 'href').then((href) => {
+        cy.request({ url: href, encoding: 'binary' }).then(({ body, headers }) => {
+          expect(headers['content-type']).to.include('application/pdf');
+          expect(body.slice(0, 5)).to.eq('%PDF-');
+        });
+      });
+    cy.get('@mundo.all').should('have.length', 0);
   });
 });

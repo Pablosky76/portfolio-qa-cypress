@@ -1,8 +1,8 @@
 # Cómo defender mi proyecto de QA con Cypress
 
-Guía de estudio de Pablo Gutiérrez Mata. Revisión: 14 de noviembre de 2026.
+Guía de estudio de Pablo Gutiérrez Mata. Portada y recorridos revisados el 24 de noviembre de 2026.
 
-Código de referencia del repositorio QA: `a9bb54443c36f97e097422410292b9f24be1b1b2`. Si cambian los tests, revisa las fichas y sus enlaces antes de usar la guía.
+Los enlaces a GitHub apuntan a la revisión histórica `a9bb54443c36f97e097422410292b9f24be1b1b2`. «Archivo local» abre el caso vigente.
 
 Esta guía acompaña al código real del proyecto. No sustituye ejecutar los casos ni demuestra por sí sola que los domines. Las respuestas en primera persona son modelos para adaptar después de comprobarlas con tus propias manos.
 
@@ -130,8 +130,7 @@ Es una adaptación del equipo, no una condición del producto ni una receta obli
 `describe` organiza; `it` define el escenario; `beforeEach` prepara su estado. Dentro del caso busco preparación, acción y resultado. Varias aserciones pueden demostrar un mismo resultado: no hace falta dividir cada atributo en un caso diferente.
 
 ```js
-cy.get('label[for="entry-profile"]').click();
-cy.get('#entry-continue').click();
+cy.get('#entry-profile').click();
 cy.location('pathname').should('eq', '/perfil');
 cy.get('h1').should('contain', 'Gutiérrez Mata');
 ```
@@ -457,25 +456,25 @@ Las fichas se ordenan por familia funcional. Cada una enlaza su archivo y la lí
 
 ### ENT · Entrada
 
-#### ENT-01 · exige elegir un recorrido antes de continuar
+#### ENT-01 · presenta a Pablo y abre el caso de estudio en un clic
 
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/entrada/smoke-perfil.cy.js#L7) · [Archivo local](../cypress/e2e/entrada/smoke-perfil.cy.js) · Tanda 1 · **Smoke**
 
-- **Riesgo:** Entrar sin elegir recorrido o no encontrar el proyecto QA.
-- **Cómo lo explico:** Compruebo bienvenida, Continuar deshabilitado, instrucción y mundo oculto; abro el enlace QA y verifico /proyecto y su sección de pipeline.
+- **Riesgo:** Que la portada oculte la especialidad o el acceso al caso de estudio.
+- **Cómo lo explico:** Compruebo el nombre, la especialidad y el mundo oculto. Abro el caso de estudio y verifico su ruta y su sección de pipeline.
 - **Límite:** No prueba todavía la carga del reino ni los artefactos de GitHub.
 - **Práctica:** Oculta el enlace QA en una copia local y predice qué paso falla.
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 
-#### ENT-02 · permite cambiar de recorrido manteniendo una sola elección
+#### ENT-02 · ofrece el CV y el contacto directamente sin cargar el juego
 
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/entrada/bienvenida.cy.js#L7) · [Archivo local](../cypress/e2e/entrada/bienvenida.cy.js) · Tanda 1
 
-- **Riesgo:** Que ambos radios queden seleccionados o Continuar no responda al cambio.
-- **Cómo lo explico:** Elijo perfil y después reino; compruebo exclusión entre radios y botón habilitado.
-- **Límite:** No continúa ninguno de los recorridos.
-- **Práctica:** Explica por qué hace falta comprobar que el perfil deja de estar marcado.
+- **Riesgo:** Que falte el contacto, el CV apunte a un archivo incorrecto o la portada cargue el juego automáticamente.
+- **Cómo lo explico:** Compruebo el enlace al correo, solicito el PDF y verifico que no se pide app.js.
+- **Límite:** El caso comprueba el enlace al correo y el archivo PDF. La entrega de correo y el contenido del CV requieren otras comprobaciones.
+- **Práctica:** Explica por qué se comprueba la cabecera del archivo PDF.
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 
@@ -484,7 +483,7 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/entrada/smoke-perfil.cy.js#L17) · [Archivo local](../cypress/e2e/entrada/smoke-perfil.cy.js) · Tanda 1 · **Smoke**
 
 - **Riesgo:** Que el recorrido profesional abra una página equivocada o cargue la escena.
-- **Cómo lo explico:** Pulso perfil y Continuar; verifico /perfil, encabezado y ausencia de canvas.
+- **Cómo lo explico:** Pulso «Ver perfil» y verifico /perfil, su encabezado y la ausencia de canvas.
 - **Límite:** No comprueba cada dato profesional ni todas las peticiones; REC-08 observa app.js.
 - **Práctica:** Distingue ausencia de canvas de ausencia de descarga del módulo 3D.
 
@@ -538,12 +537,12 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 
-#### PER-05 · vuelve a la elección de recorrido
+#### PER-05 · vuelve a la portada del portfolio
 
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/navegacion/perfil.cy.js#L28) · [Archivo local](../cypress/e2e/navegacion/perfil.cy.js) · Tanda 1
 
-- **Riesgo:** Que el visitante no pueda volver a elegir recorrido.
-- **Cómo lo explico:** Pulso world-link; verifico /, bienvenida y existencia de ambos radios.
+- **Riesgo:** Que el visitante pierda el acceso a la portada desde el perfil.
+- **Cómo lo explico:** Pulso «Volver al inicio» y compruebo que los accesos al perfil y al juego son visibles en la portada.
 - **Límite:** No comprueba restauración de posición ni historial de navegación del navegador.
 - **Práctica:** Señala la diferencia entre should exist y be.visible en este caso.
 
@@ -1561,14 +1560,14 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 
-#### VIS-12 · una visita guardada no impide elegir el perfil ligero
+#### VIS-12 · una visita guardada mantiene el acceso directo al perfil
 
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/persistencia/visitas.cy.js#L160) · [Archivo local](../cypress/e2e/persistencia/visitas.cy.js) · Tanda 3
 
 - **Riesgo:** Visita guardada obliga a cargar el mundo.
-- **Cómo lo explico:** Guardo visita interior, recargo, veo reinicio disponible, cambio a perfil y verifico su ruta y h1.
+- **Cómo lo explico:** Guardo la visita en el castillo, recargo, compruebo que aparece el reinicio y abro el perfil para verificar su ruta y encabezado.
 - **Límite:** No traslada almacenamiento entre Vercel y Sites.
-- **Práctica:** Explica por qué elegir perfil debe ocultar Empezar de nuevo.
+- **Práctica:** Explica cómo conviven el acceso al perfil y las opciones de la partida guardada.
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 
@@ -1640,7 +1639,7 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 [Código del caso](https://github.com/Pablosky76/portfolio-qa-cypress/blob/a9bb54443c36f97e097422410292b9f24be1b1b2/cypress/e2e/persistencia/fallos.cy.js#L14) · [Archivo local](../cypress/e2e/persistencia/fallos.cy.js) · Tanda 3
 
 - **Riesgo:** JSON de visita corrupto rompe la bienvenida.
-- **Cómo lo explico:** Preparo {roto antes de cargar y verifico nueva exploración, sin reinicio visible y con Continuar habilitado.
+- **Cómo lo explico:** Preparo {roto antes de cargar y verifico nueva exploración, sin reinicio visible y con «Probar el juego 3D» habilitado.
 - **Límite:** No entra al mundo en este caso.
 - **Práctica:** Explica por qué no basta comprobar que la página devuelve HTTP 200.
 
@@ -1697,7 +1696,7 @@ Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica
 - **Riesgo:** Fallo de app.js deja una pantalla bloqueada.
 - **Cómo lo explico:** Intercepto error de red, espero alias y compruebo mensaje, bienvenida, botón habilitado y busy eliminado.
 - **Límite:** Solo simula ese recurso; no una caída completa de Internet.
-- **Práctica:** Explica por qué registro intercept antes de pulsar Continuar.
+- **Práctica:** Explica por qué registro intercept antes de pulsar «Probar el juego 3D».
 
 Mi nivel comprobado: ☐ 0 · ☐ 1 · ☐ 2 · ☐ 3. Evidencia de mi práctica: ____________________
 

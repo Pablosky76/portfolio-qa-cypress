@@ -2,8 +2,7 @@ describe('Pantallas · mundo en móvil y cambios de tamaño', () => {
   beforeEach(() => {
     cy.viewport(390, 844);
     cy.visit('/');
-    cy.get('label[for="entry-realm"]').click();
-    cy.get('#entry-continue').click();
+    cy.get('#entry-realm').click();
     cy.get('#controls-dialog', { timeout: 60000 }).should('be.visible');
     cy.get('[data-layout="mobile"]').click();
     cy.get('#music-enabled').uncheck();
